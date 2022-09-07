@@ -1,1 +1,1 @@
-# NFTs-working-group
+# Cardano-certification-alliance-working-group
