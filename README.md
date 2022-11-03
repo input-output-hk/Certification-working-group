@@ -1,7 +1,7 @@
-# Cardano-certification-alliance-working-group
+# Certification-working-group
 ## Working Group Aim
 
-The aim of the Cardano Certification Alliance (CCA) working group is to represent, foster and sustain audit and certification on the Cardano blockchain.
+The aim of the Certification working group is to represent, foster and sustain audit and certification on the Cardano blockchain.
 
 ## Working Group Responsibilities
 
