@@ -6,7 +6,7 @@ The Cardano certification alliance Working Group Charter establishes the Scope, 
 
 **Working Group Name: Cardano Certification Alliance Working Group**
 
-**Meeting Cadence:** Weekly on Wednesday at 3.30-4.30 pm GMT
+**Meeting Cadence:** Weekly on Wednesday at 3.00-4.00 pm GMT
 
 **Working Group Aim**
 
