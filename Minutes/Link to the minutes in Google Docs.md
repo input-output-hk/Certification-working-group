@@ -1,4 +1,4 @@
-# Meeting agendas
+# Meeting minutes
 
 ## The link to the Google Doc meeting agenda and minutes
 
