@@ -49,16 +49,29 @@ Certification providers will present which level of certification was reached an
 
 
 ### Definitions
-- **test** - 
 - **dApp** - A decentralised application that is described by the combination of metadata, certificate and a set of used scripts.
 - **dApp Store** - A dApp aggregator application which follows on-chain data looking for and verifying dApp metadata claims, serving their users linked dApp metadata.
 
 
 ### Properties
-*`subject`*: Identifier of the claim subject (i.e dApp). A UTF-8 encoded string. Shall be the same as the one used when registering the DApp.
-*`certLevel`*: Level of certification. Integer, shall be 1, 2, or 3 and shall refers to the certification standards level as defined by the Certification Working Group [Add link].
-*`certificateIssuer`*: Name of the certificate issuer.
-*`scriptHashes`*: Ordered complete list of script hashes for the certified DApp.
+
+
+**subject**, an UTF-8 encoded string, is a mandatory field which is an identifier of the claim subject.
+
+**certLevel**, an integer between 1 and 3, is a mandatory field that represents the level of certification reached in a certificate.
+
+**certificateIssuer**, a string, is a mandatory field that represents the company that has issued the certificate. It will be used with a public list of public keys to ensure that the certificate originates from a trusted certification provider. 
+
+**reportURLs**, an array of URLs, is a mandatory field that link to the actual certification report for anyone to read. This ensures transparency in the findings, what was and was not considered in the certification process.
+
+**reportHash**, a string, is a mandatory field that is the blake2b-256 hash of the audit file pointed by the links in **reportURLs**. 
+
+**scriptHashes**, containing an ordered list of all scripts that make the DApp, is a mandatory field which can be used as a link to the actual DApp running on-chain.
+
+[TODO: A non example version of the metadata]
+[TO ADD: A link to off-chain metadata, with a corresponding blake2b-256 hash]
+[TO ADD: A signature of the certificate]
+[TO ADD: a schema version so we allow for new schemas without relying on parsers to differentiate them]
 
 ### Example
 ```json
@@ -70,6 +83,7 @@ Certification providers will present which level of certification was reached an
         "https://audithouse.io/certificate.pdf",
         "ipfs://bafybeiemxf5abjwjbikoz4mc3a3dla6ual3jsgpdr4cjr3oz3evfyavhwq"
     ]
+    "reportHash": "c6bb42780a9c57a54220c856c1e947539bd15eeddfcbf3c0ddd6230e53db5fdd"
 
     "scriptHashes": [
         "0ac61bc5d90aff9dbbc3b1fdeb3650067bf9a6c33598501ab9e68721",
@@ -84,7 +98,7 @@ Certification providers will present which level of certification was reached an
 [TBD: on/off chain, even useful?]
 ```json
 {
-    "compiler": "", // compiler + version, optimizers? compilation options?
+    "compiler": "", // compiler + version + options, compilation options?
     "auditSummary": "" // A summary (max 100 words) that can be displayed by the stores
     "certificationArtifacts": ["", ""] // links to all the certification artifacts test runs, formal proof objects, certification compilation proof object etc.
     "verificationTools": "",
@@ -107,22 +121,32 @@ It should be possible for wallets to identify to users the certification status 
 It must also explain how the proposal affects the backward compatibility of existing solutions when applicable. If the proposal responds to a CPS, the 'Rationale' section should explain how it addresses the CPS, and answer any questions that the CPS poses for potential solutions.
 -->
 
-*`subject `*
+An on-chain solution is preferred as it allows for it to be checkable by any stakeholder and immutable.
 
+Certificate are issued by certification providers that sign the certificate to prevent certificate forgeries.
+This design allows for anyone to issue certificates as long as they sign it but stakeholders are then free to maintain a list of the trusted certification providers.
+
+These certificates are self-standing and can be presented as-is by any stakeholder.
+
+This proposal does not affect any backward compatibility of existing solution but is based on the work done for CIP72 on DApp registration and Discovery. It is also linked to CIP52 on Cardano audit best practices guidelines.
+
+### Other designs considered
+**Updates to registration entries**
+This would have required DApp owner or certification providers to add certificates to every registration making it harder to maintain a shared state between all stakeholders. The chosen design requires to follow the chain to discover the certificates which should be expected from stakeholders.
 
 
 ## Path to Active
 
 ### Acceptance Criteria
-<!-- Describes what are the acceptance criteria whereby a proposal becomes 'Active' -->
+
 Certificates are being issued under this form by multiple DApps auditors and certification companies.
+
 Certificates are being displayed by multiple DApps stores or aggregators which uses this format.
 
 ### Implementation Plan
-<!-- A plan to meet those criteria. Or `N/A` if not applicable. -->
- - [ ] This CIP will be discussed at the Cardano Certification Working Group where multiple auditors are being represented. This will ensure that they agree on the content and are ready to issue Level 2 certificates under this format.
- - [ ] This CIP will be presented at the Cardano Fans team which aggregates this type of data so they start using this format as a basis for their certificate aggregations.
- - [ ] This CIP will be presented to the IOG Lace team which will display certificates for registered DApps. 
+ - [ ] This CIP will be discussed and agreed by the Cardano Certification Working Group where multiple auditors are being represented. This will ensure that certification issuer have agreed on the content and are ready to issue certificates under this format.
+
+ - [ ] This CIP will be presented to the IOG Lace team and Cardano Fans team which will display certificates for DApps. This is to ensure that the format contains all the necessary information for a DApp store or an aggregator to correctly link and display a certificate from the on-chain and off-chain metadata.
 
 ## Copyright
 <!-- The CIP must be explicitly licensed under acceptable copyright terms. -->
