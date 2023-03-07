@@ -96,3 +96,25 @@
 | Purpose      | SMT Based verification     |
 | Available at | https://hackage.haskell.org/package/sbv   |
 | Remarks      |   |
+
+
+| Name         | FitSpec       |
+|--------------|------------|
+| Affiliation  | Rudy Matela |
+| Purpose      | Mutation Testing    |
+| Available at | https://github.com/rudymatela/fitspec   |
+| Remarks      |   |
+
+| Name         | Extrapolate       |
+|--------------|------------|
+| Affiliation  | Rudy Matela |
+| Purpose      | Property based testing with generalized CEX    |
+| Available at | https://github.com/rudymatela/extrapolate   |
+| Remarks      |   |
+
+| Name         | LeanCheck       |
+|--------------|------------|
+| Affiliation  | Rudy Matela |
+| Purpose      | Property based testing    |
+| Available at | https://github.com/rudymatela/leancheck  |
+| Remarks      |   |
