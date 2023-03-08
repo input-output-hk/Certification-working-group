@@ -55,7 +55,6 @@ Certification providers will present which level of certification was reached an
 
 ### Properties
 
-
 **subject**, an UTF-8 encoded string, is a mandatory field which is an identifier of the claim subject.
 
 **certLevel**, an integer between 1 and 3, is a mandatory field that represents the level of certification reached in a certificate.
@@ -65,6 +64,14 @@ Certification providers will present which level of certification was reached an
 **reportURLs**, an array of URLs, is a mandatory field that link to the actual certification report for anyone to read. This ensures transparency in the findings, what was and was not considered in the certification process.
 
 **reportHash**, a string, is a mandatory field that is the blake2b-256 hash of the audit file pointed by the links in **reportURLs**. 
+
+**summaryURLs**, an array of URLs, is a mandatory field that link to the actual certification summary for anyone to read. 
+
+**summaryHash**, a string, is a mandatory field that is the blake2b-256 hash of the summary file pointed by the links in **summaryURLs**. 
+
+**disclaimerURLs**, an array of URLs, is a mandatory field that link to the legal disclaimer about the content of the report pointed by **reportURLs** links.
+
+**disclaimerHash**, a string, is a mandatory field that is the blake2b-256 hash of the summary file pointed by the links in **disclaimerURLs**. 
 
 **scriptHashes**, containing an ordered list of all scripts that make the DApp, is a mandatory field which can be used as a link to the actual DApp running on-chain.
 
@@ -81,9 +88,24 @@ Certification providers will present which level of certification was reached an
     "certificateIssuer":    "Audit House",
     "reportURLs": [
         "https://audithouse.io/certificate.pdf",
-        "ipfs://bafybeiemxf5abjwjbikoz4mc3a3dla6ual3jsgpdr4cjr3oz3evfyavhwq"
+        "ipfs://bafybeiemxfal3jsgpdr4cjr3oz3evfyavhwq"
     ]
     "reportHash": "c6bb42780a9c57a54220c856c1e947539bd15eeddfcbf3c0ddd6230e53db5fdd"
+
+    "summaryURLs": [
+        "https://audithouse.io/summary.pdf",
+        "ipfs://jdke788dejknfezio793029ozoekd707d609478ff65bd8501ab9e68dd98"
+    ]
+
+    "summaryHash": "c57a54220c856c1e947ddd6230e53db5fdd539bd15eec6bb42780a9ddfcbf3c0"
+
+    "disclaimerURLs": [
+        "https://audithouse.io/disclaimer.pdf",
+        "ipfs://ezio5abjwjbikoz4mc3a3dla6ujknf01ab9e68dd98kd707d609478ff6"
+    ]
+
+    "disclaimerHash": "c57a54220c856c1e947ddd6230e53db5fdd539bd15eec6bb42780a9ddfcbf3c0"
+
 
     "scriptHashes": [
         "0ac61bc5d90aff9dbbc3b1fdeb3650067bf9a6c33598501ab9e68721",
@@ -96,6 +118,10 @@ Certification providers will present which level of certification was reached an
 ```
 
 [TBD: on/off chain, even useful?]
+
+[TO ADD: Compilation chain, how do we represent that? with versions, compilation options]
+[TO ADD: Verification tools, how do we represent that? with versions, compilation options]
+
 ```json
 {
     "compiler": "", // compiler + version + options, compilation options?

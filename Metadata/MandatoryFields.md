@@ -10,8 +10,6 @@
 
 - Certificate issuer certificateIssuer (string, min 4 max 50 characters)
 
-- Date of issuance issuanceDate (string)
-
 - Links to report reportURL (array of strings - urls, max 200 char-, max 10 elements)
 
 - Hash of the report reportHash (string)
@@ -32,7 +30,7 @@
 
 - Compilation chain used compilationChain (array of strings)
 
-	- Compilator and version used
+	- Compiler and version used
 
 	- Possible post-compilation optimizations
 
