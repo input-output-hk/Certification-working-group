@@ -118,3 +118,18 @@
 | Purpose      | Property based testing    |
 | Available at | https://github.com/rudymatela/leancheck  |
 | Remarks      |   |
+
+| Name         | Plutip      |
+|--------------|------------|
+| Affiliation  | MLabs |
+| Purpose      | Setting Private network for testing |
+| Available at | https://github.com/mlabs-haskell/plutip  |
+| Remarks      |   |
+
+
+| Name         | Plutus Simple Model      |
+|--------------|------------|
+| Affiliation  | MLabs |
+| Purpose      | Unit test library |
+| Available at | https://github.com/mlabs-haskell/plutus-simple-model |
+| Remarks      |   |
