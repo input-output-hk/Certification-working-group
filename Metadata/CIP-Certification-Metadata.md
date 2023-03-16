@@ -59,7 +59,7 @@ Certification providers will present which level of certification was reached an
 
 **certLevel**, an integer between 1 and 3, is a mandatory field that represents the level of certification reached in a certificate.
 
-**certificateIssuer**, a string, is a mandatory field that represents the company that has issued the certificate. It will be used with a public list of public keys to ensure that the certificate originates from a trusted certification provider. 
+**certificateIssuer**, a string, is a mandatory field that represents the party that has issued the certificate. It will be used with a public list of public keys to ensure that the certificate originates from a trusted certification provider. 
 
 **reportURLs**, an array of URLs, is a mandatory field that link to the actual certification report for anyone to read. This ensures transparency in the findings, what was and was not considered in the certification process.
 
