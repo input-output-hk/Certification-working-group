@@ -65,11 +65,11 @@ Certification providers will sign the certificate to attest that they have done 
     "subject": "d684512ccb313191dd08563fd8d737312f7f104a70d9c72018f6b0621ea738c5b8213c8365b980f2d8c48d5fbb2ec3ce642725a20351dbff9861ce9695ac5db8", 
     "rootHash": "f08ccc1ee08d034d8317d1d84cab76d3cac48a8466ca9e54a291bb998c49a1732e93280bf04a11293c73195affe4fcaa41f7b27c067396f97f701dd96f72665e",
     "metadata": [
-        "https://audithouse.io/certification/report.pdf",
-        "https://greatdapp.com/certification/AuditHouse_report.pdf"
+        "ipfs://abcdefghijklmnopqrstuvwxyz0123456789",
+        "https://example.com/metadata.json"
     ]
 
-    "schema_version": "1.0",
+    "schemaVersion": "1.0",
     "type": {
         "action": "CERTIFY",
         "certificationLevel": "1",
@@ -122,6 +122,22 @@ This hash is calculated by taking the entire metadata tree object, ordering the 
         "type": "string",
         "description": "Can be anything. Subject of the certification.",
       },
+      "rootHash": {
+        "type": "string",
+        "description": "blake2b hash of the metadata describing the dApp"
+      },
+      "metadata": {
+        "type": "array",
+        "description": "Array of links that points to the metadata"
+        "items": [
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "schemaVersion": {
+        "type": "string"
+      }
       "type": {
         "type": "object",
         "description": "Describes the certification certificate.", 
@@ -140,10 +156,7 @@ This hash is calculated by taking the entire metadata tree object, ordering the 
           }
         }
       },  
-      "rootHash": {
-        "type": "string",
-        "description": "blake2b hash of the metadata describing the dApp"
-      },
+
       "signature": {
         "description": "The signature of the certification certificate by the certification provider",
         "type": "object",
@@ -206,8 +219,7 @@ The off-chain metadata should follow the following schema:
 
 ```json
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",  // [TODO: Not sure about this one]
-  
+  "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
     "subject": {
@@ -244,7 +256,7 @@ The off-chain metadata should follow the following schema:
           "required": [
               "website"
           ]
-        },
+        }
       },
       "required": [
           "name",
@@ -258,7 +270,9 @@ The off-chain metadata should follow the following schema:
         "reportURLs": {
           "type": "array",
           "items": [
-              "type": "string"
+              {
+                "type": "string"
+              }
           ]
         },
         "reportHash": {
@@ -269,14 +283,16 @@ The off-chain metadata should follow the following schema:
           "reportURLs",
           "reportHash"
       ]
-    }
+    },
     "summary": {
       "type": "object",
       "properties": {
         "summaryURLs": {
           "type": "array",
           "items": [
-              "type": "string"
+              {
+                "type": "string"
+              }
           ]
         },
         "summaryHash": {
@@ -287,14 +303,16 @@ The off-chain metadata should follow the following schema:
           "summaryURLs",
           "summaryHash"
       ]
-    }
+    },
     "disclaimer": {
       "type": "object",
       "properties": {
         "disclaimerURLs": {
           "type": "array",
           "items": [
-              "type": "string"
+              {
+                "type": "string"
+              }
           ]
         },
         "disclaimerHash": {
@@ -305,7 +323,7 @@ The off-chain metadata should follow the following schema:
           "disclaimerURLs",
           "disclaimerHash"
       ]
-    }
+    },
     "scripts": {
       "type": "array",
       "items": [
@@ -349,6 +367,7 @@ The off-chain metadata should follow the following schema:
     "scripts"
   ]
 }
+
 ```
 
 ### Example
@@ -360,12 +379,13 @@ The off-chain metadata should follow the following schema:
   "certificationLevel": 1,
   "certificateIssuer": {
     "name": "Audit House LLC",
-    "email": "contact@audithouse.com"
+    "email": "contact@audithouse.com",
     "link": "https://audithouse.com",
     "social": {
         "twitter": "twiterHandle",
         "github": "githubHandle",
         "website": "https://website"
+    }
   },
   "report": {
     "reportURLs": [
@@ -387,18 +407,18 @@ The off-chain metadata should follow the following schema:
         "ipfs://ezio5abjwjbikoz4mc3a3dla6ujknf01ab9e68dd98kd707d609478ff6"
     ],
     "disclaimerHash": "c57a54220c856c1e947ddd6230e53db5fdd539bd15eec6bb42780a9ddfcbf3c0"
-  }
+  },
   "scripts": [
         {
           "era": "basho",
-          "compiler": "plutusTX"
+          "compiler": "plutusTX",
           "fullScriptHash": "711dcb4e80d7cd0ed384da5375661cb1e074e7feebd73eea236cd68192",
           "scriptHash": "1dcb4e80d7cd0ed384da5375661cb1e074e7feebd73eea236cd68192",
           "contractAddress": "addr1wywukn5q6lxsa5uymffh2esuk8s8fel7a0tna63rdntgrysv0f3ms"
         },
         {
           "era": "basho",
-          "compiler": "plutusTX"
+          "compiler": "plutusTX",
           "fullScriptHash": "384da5375661cb1e07713eea236cd681921dcb4e80d7cd0ed4e7feebd7",
           "scriptHash": "6cd68191dcb4e80d7c5661cb1e074e7feebd73eea232d0ed384da537",
           "contractAddress": "addr1wywukn5q6lrdntgrysv0f7a0tna63ymffh23ms5uxsaesuk8s8fel"
