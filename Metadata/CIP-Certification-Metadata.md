@@ -312,6 +312,12 @@ The off-chain metadata should follow the following schema:
         {
             "type": "object",
             "properties": {
+                "era": {
+                  "type": "string"
+                },
+                "compiler": {
+                  "type": "string"
+                },
                 "fullScriptHash": {
                   "type": "string"
                 },
@@ -384,14 +390,14 @@ The off-chain metadata should follow the following schema:
   }
   "scripts": [
         {
-          "plutusVersion": 1,
+          "era": "basho",
           "compiler": "plutusTX"
           "fullScriptHash": "711dcb4e80d7cd0ed384da5375661cb1e074e7feebd73eea236cd68192",
           "scriptHash": "1dcb4e80d7cd0ed384da5375661cb1e074e7feebd73eea236cd68192",
           "contractAddress": "addr1wywukn5q6lxsa5uymffh2esuk8s8fel7a0tna63rdntgrysv0f3ms"
         },
         {
-          "plutusVersion": 1,
+          "era": "basho",
           "compiler": "plutusTX"
           "fullScriptHash": "384da5375661cb1e07713eea236cd681921dcb4e80d7cd0ed4e7feebd7",
           "scriptHash": "6cd68191dcb4e80d7c5661cb1e074e7feebd73eea232d0ed384da537",
