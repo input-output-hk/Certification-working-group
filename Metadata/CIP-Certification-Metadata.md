@@ -67,7 +67,7 @@ Certification providers will sign the certificate to attest that they have done 
     "metadata": [
         "ipfs://abcdefghijklmnopqrstuvwxyz0123456789",
         "https://example.com/metadata.json"
-    ]
+    ],
 
     "schemaVersion": "1.0",
     "type": {
@@ -82,8 +82,7 @@ Certification providers will sign the certificate to attest that they have done 
         "algo": "Ed25519−EdDSA",
         "pub": "b7a3c12dc0c8c748ab07525b701122b88bd78f600c76342d27f25e5f92444cde"// Audit House LLC public key
     }
-
-
+}
 ```
 
 ### Properties
