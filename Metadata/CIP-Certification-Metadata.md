@@ -93,7 +93,7 @@ Certification providers will sign the certificate to attest that they have done 
 
 - `action`: The action that the certificate is asserting. It can take the following values:
     - `CERTIFY`: The certificate is asserting that the dApp is being registered for the first time.
-        [IDEA: Revoke? Update?]
+        [IDEA: Revoke? Update? Audit with a certification level of 0?]
     - `certificationLevel`: The certification level, between 1 and 3, in accordance with the Certification Working Group standards for certification level.
     - `certificationIssuer`: The name of the certification issuer.
 
@@ -105,7 +105,7 @@ This hash is calculated by taking the entire metadata tree object, ordering the 
 
 `metadata`: An array of links to the dApp's metadata. The metadata is a JSON object that contains the dApp's metadata in accordance with [CIP 26](https://cips.cardano.org/cips/cip26/)
 
-`signature`: The signature of the certificate. The signature is done over the blake2b-256 hash of the certificate. The client should use the public key to verify the signature of the certificate.
+`signature`: The signature of the certificate. The signature is done over the blake2b-256 hash of `rootHash`. The client should use the public key to verify the signature of the certificate.
 
 
 ### Certificate JSON Schema
