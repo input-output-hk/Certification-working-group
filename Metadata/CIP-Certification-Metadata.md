@@ -427,10 +427,10 @@ Certification issuers should be free to add additional fields to fit some additi
 
 
 ### Certification issuers
-[TO DISCUSS: Should we have levels that the certification issuers is able to provide? ]
-| Certification issuer | URL | Contact email | Public key |
-|----------------------|-----|---------------|------------|
-
+| Certification issuer | URL                | Contact email        | Certification levels | Public key                                |
+|----------------------|-----               |---------------       |----------------------|------------                               |
+| Example Ltd.         | http://example.com | contact@example.com  | 1,2                  | EXAMPLEPUBLICKEYPGPED25519 (PGP, ed25519) |
+ 
 ## Rationale: how does this CIP achieve its goals?
 
 An on-chain solution is preferred as it allows for it to be checkable by any stakeholder and immutable.
