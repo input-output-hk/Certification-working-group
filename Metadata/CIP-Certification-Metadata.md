@@ -1,13 +1,17 @@
 ---
-CIP: ?
-Title: Certification Metdata
+CIP: 123
+Title: On-chain Certification Metadata Standard
 Category: Metadata
 Status: Proposed
 Authors:
     - Romain Soulat <romain.soulat@iohk.io>
+    - Nicolas Jeannerod <nicolas.jeannerod@tweag.io>
+    - Mathieu Montin <mathieu.montin@tweag.io>
+    - Ali Modiri <mixaxim@gimbalabs.io>
 Implementors: []
 Discussions:
     - https://github.com/cardano-foundation/cips/pulls/??
+    - https://github.com/input-output-hk/Certification-working-group/pull/18
 Created: 2023-02-23
 License: CC-BY-4.0
 ---
@@ -33,7 +37,7 @@ The metadata should be discoverable by all certification stakeholders, including
 ### Use-cases and Stakeholders
 DApp developers will seek certification from one of the issuers, according to their desired level of certification and will refer to the certificate on several platforms (e.g. on their website or in their DApp registration on a DApp store).
 
-Certification is to be provided by certification issuers including: testing services (level 1), auditors (level 2), and verification services (level 3). Certification issuers will issue these certificates refering to a particular version of a DApp that has succesfully gone through a certification process. 
+Certification is to be provided by certification issuers including: testing services (level 1), auditors (level 2), and verification services (level 3). Certification issuers will issue these certificates referring to a particular version of a DApp that has succesfully gone through a certification process. 
 
 DApp stores and light wallets will be able to pull DApps information from DApps registration or chain exploring and will link a DApp to a corresponding set of certificates.
 
@@ -42,11 +46,9 @@ End-user will interact with a DApp through a wallet and will be able to check th
 
 ## Specification
 
-
-
 ### Definitions
 - **anchor** - A hash written on-chain that can be used to verify the integrity (by way of a cryptographic hash) of the data that is found off-chain.
-- **dApp** - A decentralised application that is described by the combination of metadata, certificate and a set of used scripts.
+- **DApp** - A decentralised application that is described by the combination of metadata, certificate and a set of scripts.
 - **dApp Store** - A dApp aggregator application which follows on-chain data looking for and verifying dApp metadata claims, serving their users linked dApp metadata.
 - **Certification issuers** - A company that issues certification certificates on-chain.
 
@@ -56,28 +58,28 @@ Certification issuers will sign the certificate to attest that they have done th
 
 ### Suggested validations
 - `integrity`: The DApp's metadata off-chain shall match the metadata **anchored** on-chain.
-- `trust`: The DApp's certification metadata shall be signed by a trusted certfication issuer. This means a list of public keys of certification issuers needs to be known. It will then be up to the DApp store to decide which certification issuers are really trusted and publish a list of their own certification issuer.
+- `trust`: The DApp's certification metadata transaction shall be signed by a trusted certfication issuer. This means a list of wallets of certification issuers needs to be known. It will then be up to the DApp store to decide which certification issuers are really trusted and publish a list of their own trusted certification issuers.
 
 ### Certificate JSON Schema
 
 ```json
 {
     "$schema": "https://json-schema.org/draft/2019-09/schema" 
-    "$id": "YYY", 
-    "title": "Certification Certificate", 
+    "$id": "", 
+    "$title": "Certification Certificate", 
     "type": "object", 
     "properties": {
       "subject": {
         "type": "string",
-        "description": "Can be anything. Subject of the certification.",
+        "description": "Can be anything. Subject of the certification. It should match the registration metadata subject.",
       },
       "rootHash": {
         "type": "string",
-        "description": "blake2b hash of the metadata describing the dApp"
+        "description": "blake2b hash of the off-chain certification metadata linked in the metadata field."
       },
       "metadata": {
         "type": "array",
-        "description": "Array of links that points to the metadata"
+        "description": "Array of links that points to the metadata json file."
         "items": [
           {
             "type": "string"
@@ -85,45 +87,29 @@ Certification issuers will sign the certificate to attest that they have done th
         ]
       },
       "schemaVersion": {
-        "type": "string"
+        "type": "integer",
+        "description": "Used to describe the json schema version of the on-chain metadata."
       }
       "type": {
         "type": "object",
-        "description": "Describes the certification certificate.", 
+        "description": "Describes the certification certificate type.", 
         "properties": {
           "action": {
             "type": "string",
-            "description": "Describes the action this certification certificate is claiming. For the moment, only 'CERTIFY' is possible but we want to leave the possibility for new actions in the future"
+            "description": "Describes the action this certification certificate is claiming. For the moment, CERTIFY shall be used to claim a certification that meets the Certfication Standard. AUDIT shall be used to publish on-chain an audit that may not meet the Certification standard"
           },
           "certificationLevel": {
             "type": "integer",
-            "description": "Integer between 1 and 3 to describe the level of certification this certificate refers to"
+            "description": "Integer between 1 and 3 to describe the level of certification this certificate refers to when using a CERTIFY action. Integer of 0 for an audit when using an AUDIT action."
           },
           "certificateIssuer": {
             "type": "string",
-            "description": "Certification issuer name"
+            "description": "Certification issuer name."
           }
-        }
-      },  
-
-      "signature": {
-        "description": "The signature of the rootHash by the certification issuer",
-        "type": "object",
-        "properties": {
-            "r": {
-                "type": "string",
-                "description": "hex representation of the R component of the signature"
-            },
-            "s": {
-                "type": "string",
-                "description": "hex representation of the S component of the signature"
-            },
-              
         },
-        "required": ["r", "s", "algo", "pub"]
-      }
-    },
-    "required": ["subject", "rootHash","type", "signature"]
+        "required": ["action", "certificationLevel", "certificateIssuer"]
+      },  
+    "required": ["subject", "rootHash","metadata", "schemaVersion", "type"]
 }
 ```
 
@@ -142,13 +128,6 @@ Certification issuers will sign the certificate to attest that they have done th
         "action": "CERTIFY",
         "certificationLevel": "1",
         "certificateIssuer": "Example LLC"
-    },
-
-    "signature": {
-        "r": "5114674f1ce8a2615f2b15138944e5c58511804d72a96260ce8c587e7220daa90b9e65b450ff49563744d7633b43a78b8dc6ec3e3397b50080",
-        "s": "a15f06ce8005ad817a1681a4e96ee6b4831679ef448d7c283b188ed64d399d6bac420fadf33964b2f2e0f2d1abd401e8eb09ab29e3ff280600",
-        "algo": "Ed25519−EdDSA",
-        "pub": "b7a3c12dc0c8c748ab07525b701122b88bd78f600c76342d27f25e5f92444cde"
     }
 }
 ```
@@ -162,8 +141,8 @@ Certification issuers will sign the certificate to attest that they have done th
 - `action`: The action that the certificate is asserting. It can take the following values:
     - `CERTIFY`: The certificate is asserting that the dApp is being certified.
     - `AUDIT`: The certificate is asserting that an audit has been performed for this DApp. `AUDIT` shall come with a certification level `certificationLevel` of `0`.
-    [IDEA: Revoke? Update?]
-    - `certificationLevel`: The certification level is an integer between 0 and 3. 0 is reserved for audits and reports that are not compliant with the certification standards. 1, 2, and 3 refers to the certification certificates refering to the three level of certifications as defined by the certification working group.
+
+    - `certificationLevel`: The certification level is an integer between 0 and 3. 0 is reserved for audits and reports that are not compliant with the certification standards. 1, 2, and 3 refers to the certification certificates referring to the three level of certifications as defined by the certification working group.
     - `certificationIssuer`: The name of the certification issuer.
 
 
@@ -172,48 +151,53 @@ Certification issuers will sign the certificate to attest that they have done th
 
 This hash is calculated by taking the entire metadata tree object, ordering the keys in the object alphanumerically, and then hashing the resulting JSON string using the **blake2b-256** hashing algorithm. The hash is encoded as a hex string.
 
+`schemaVersion`: A versioning number for the json schema of the on-chain metadata. This current description shall be refered as `schemaVersion: 1`.
+
 `metadata`: An array of links to the dApp's metadata. The metadata is a JSON object that contains the dApp's metadata in accordance with [CIP 26](https://cips.cardano.org/cips/cip26/)
 
-`signature`: The signature of the certificate. The signature is done over the blake2b-256 hash of `rootHash`. Any stakeholder can use the public key to verify who signed the certificate and possibly compare it with a list of known public keys to check the identity of the certificate issuer.
+<!-- `signature`: The signature of the certificate. The signature is done over the blake2b-256 hash of `rootHash`. Any stakeholder can use the public key to verify who signed the certificate and possibly compare it with a list of known public keys to check the identity of the certificate issuer. -->
 
+Values for all fields shall be shorter than 64 characters to be able to be included on-chain.
 
 ### Metadata Label
 When submitting the transaction metadata pick the following value for `transaction_metadatum_label`:
 
-
 - `1304`: DApp Certification
-[TODO: Pick a number and register it in accordance to [CIP10](https://cips.cardano.org/cips/cip10/)]
 
 ### Off-chain Metadata Format
 The Dapp Certification certificate is complemented by off-chain metadata that can be fetched from off-chain metadata servers.
 
 ### Properties
 
+`subject`, a mandatory string, Identifier of the claim subject (i.e dApp). A UTF-8 encoded string.
 
-**certificateIssuer**, a string, is a mandatory field that represents the party that has issued the certificate. It will be used with a public list of public keys to ensure that the certificate originates from a trusted certification issuer.
+`schemaVersion`, a mandatory string, used as a versioning number for the Json schema of the on-chain metadata. This current description shall be refered as `schemaVersion: 1`.
 
-**report**, an object that contains:
-- **reportURLs**, an array of URLs, is a field where each link points to the same actual certification report for anyone to read. This ensures transparency in the findings, what was and was not considered in the certification process..
+`certificateIssuer`, a mandatory object used to describe the certification issuer, that contains the following fields:
+- `name`, a mandatory string, the name of the certification issuer
+- `logo`, a string, a link to the logo of the certification issuer. The logo could be self-hosted in order to allow updates on the logo design.
+- `social`, an object used to list all the different social contacts of the Certificate Issuer:
+   - `twitter`, a string, the twitter handle of the Certificate Issuer
+   - `github`, a string, the github handle of the Certificate Issuer
+   - `contact`, a mandatory string, the contact email of the Certificate Issuer
+   - `website`, a mandatory string, a link to the Certificate Issuer's website
+   - `discord`, a string, a link to the Certificate Issuer's Discord server
 
-- **reportHash**, a string, is a field that is the blake2b-256 hash of the report pointed by the links in **reportURLs**. 
+`report`, an object that contains:
+- `reportURLs`, an array of URLs, is a field where each link points to the same actual certification report for anyone to read. This ensures transparency in the findings, what was and was not considered in the certification process..
+- `reportHash`, a string, is a field that is the blake2b-256 hash of the report pointed by the links in `reportURLs`. 
 
-**summary**, an object that contains:
-- **summaryURLs**, an array of URLs, is a mandatory field that link to the actual certification summary for anyone to read. 
+`summary`, a string, that contains the summary of the report from the certification issuer.
 
-- **summaryHash**, a string, is a mandatory field that is the blake2b-256 hash of the summary file pointed by the links in **summaryURLs**. 
+`disclaimer`, a string, that contains the legal disclaimer from the certification issuer.
 
-**disclaimer**, an object that contains:
-- **disclaimerURLs**, an array of URLs, is a mandatory field that link to the legal disclaimer about the content of the report pointed by **reportURLs** links.
-
-- **disclaimerHash**, a string, is a mandatory field that is the blake2b-256 hash of the summary file pointed by the links in **disclaimerURLs**. 
-
-**script** an array of objects that represents the whole DApp's on-chain script. Each object is comprised of:
-- **fullScriptHash**, a string, is the prefix and script hash or script hash+staking key
-- **scriptHash**, a string, is the script hash or script hash+staking key
-- **contractAddress**, a string, the script address
+`script` an array of objects that represents the whole DApp's on-chain script. Each object is comprised of:
+- `fullScriptHash`, a string, is the prefix and script hash or script hash+staking key
+- `scriptHash`, a string, is the script hash or script hash+staking key
+- `contractAddress`, a string, the script address
 
 
-The off-chain metadata should follow the following schema:
+The off-chain metadata should follow the following schema and should then be reformatted according to [RFC 8785](https://www.rfc-editor.org/rfc/rfc8785) on canonical JSON Scheme:
 
 ```json
 {
@@ -222,46 +206,61 @@ The off-chain metadata should follow the following schema:
   "properties": {
     "subject": {
       "type": "string"
+      "description": "Can be anything. Subject of the certification. It should match the registration metadata subject and the on-chain metadata.",
     },
-    "schemeVersion": {
-      "type": "string"
+    "schemaVersion": {
+      "type": "string",
+      "description": "Used to describe the json schema version of the off-chain metadata."
+
     },
     "certificationLevel": {
-      "type": "integer"
+      "type": "integer",
+      "description": "Describes the action this certification certificate is claiming. For the moment, CERTIFY shall be used to claim a certification that meets the Certfication Standard. AUDIT shall be used to publish on-chain an audit that may not meet the Certification standard. Shall match the on-chain certificationLevel"
     },
     "certificateIssuer": {
       "type": "object",
       "properties": {
         "name": {
-           "type": "string"
+           "type": "string",
+           "description": "Name of the Certificate Issuer."
         },
         "logo": {
             "type": "string"
-        },
-        "email": {
-          "type": "string"
+            "description": "URL to the logo of the Certificate Issuer."
         },
         "social": {
           "type": "object",
           "properties": {
             "twitter": {
-              "type": "string"
+              "type": "string",
+              "description": "Twitter handle of the Certificate Issuer."
             },
             "github": {
-              "type": "string"
+              "type": "string",
+              "description": "GitHub handle of the Certificate Issuer."
+            },
+            "contact": {
+              "type": "string",
+              "description": "Contact email of the Certification Issuer."
             },
             "website": {
-              "type": "string"
+              "type": "string",
+              "description": "URL to the website of the Certificate Issuer."
+            },
+            "discord": {
+                "type": "string",
+                "description": "URL to the Discord server of the Certificate Issuer."
             }
           },
+          "description": "Social contacts of the Certificate Issuer.",
           "required": [
-              "website"
+              "website",
+              "contact"
           ]
         }
       },
       "required": [
           "name",
-          "email",
           "social"
       ]
     },
@@ -272,12 +271,14 @@ The off-chain metadata should follow the following schema:
           "type": "array",
           "items": [
               {
-                "type": "string"
+                "type": "string",
+                "description": "A URL to the report of the certification/audit."
               }
           ]
         },
         "reportHash": {
-          "type": "string"
+          "type": "string",
+          "description": "Hash of the report pointed by the links in reportURLs"
         }
       },
       "required": [
@@ -287,9 +288,11 @@ The off-chain metadata should follow the following schema:
     },
     "summary": {
       "type": "string",
+      "description": "A string of the summary of the certification/audit. "
     },
     "disclaimer": {
-      "type": "string"
+      "type": "string",
+      "description": "A string of the legal disclaimer from the Certificate Issuer"
     },
     "scripts": {
       "type": "array",
@@ -299,36 +302,47 @@ The off-chain metadata should follow the following schema:
                 "type": "object",
                 "properties": {
                     "era": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Describe which era this script was written for."
+
                     },
                     "compiler": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Compiler used for this script."
                     },
                     "compilerVersion": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Compiler version used for this script."
                     },
                     "optimizer": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Post compilation optimizer used for this script."
                     },
                     "optimizerVersion": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Post compilation optimizer version used for this script."
                     },
                     "progLang": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Programming language used for this script"
                     },
                     "repository": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "URL to the repository of the script"
                     }
                 }
             }
             "fullScriptHash": {
-              "type": "string"
+              "type": "string",
+              "description": "Prefix and script hash or script hash+staking key"
             },
             "scriptHash": {
-              "type": "string"
+              "type": "string",
+              "description": "Script hash or script hash+staking key"
             },
             "contractAddress": {
-              "type": "string"
+              "type": "string",
+              "description": "Script on-chain address"
             }
             "required": [
                 "fullScriptHash",
@@ -342,7 +356,7 @@ The off-chain metadata should follow the following schema:
 
   "required": [
     "subject",
-    "schemeVersion",
+    "schemaVersion",
     "certificationLevel",
     "certificateIssuer",
     "report",
@@ -351,7 +365,6 @@ The off-chain metadata should follow the following schema:
     "scripts"
   ]
 }
-
 ```
 
 ### Example
@@ -359,14 +372,14 @@ The off-chain metadata should follow the following schema:
 ```json
 {
   "subject": "d684512ccb313191dd08563fd8d737312f7f104a70d9c72018f6b0621ea738c5b8213c8365b980f2d8c48d5fbb2ec3ce642725a20351dbff9861ce9695ac5db8",
-  "schemeVersion": "1.0.0",
+  "schemaVersion": "1.0.0",
   "certificationLevel": 1,
   "certificateIssuer": {
     "name": "Audit House LLC",
     "logo": "https://www.example.com/media/logo.svg"
-    "email": "contact@example.com",
-    "link": "https://example.com",
     "social": {
+        "contact": "contact@example.com",
+        "link": "https://example.com",
         "twitter": "twiterHandle",
         "github": "githubHandle",
         "website": "https://www.example.com"
@@ -380,7 +393,7 @@ The off-chain metadata should follow the following schema:
     "reportHash": "c6bb42780a9c57a54220c856c1e947539bd15eeddfcbf3c0ddd6230e53db5fdd"
   },
   "summary": "This is the summary of the report."
-  "disclaimer": "This is the legal disclaimer from the ",
+  "disclaimer": "This is the legal disclaimer from the report",
   "scripts": [
         {
           "smartContractInfo": {
@@ -414,7 +427,7 @@ The off-chain metadata should follow the following schema:
 }
 ```
 
-[TO DISCUSS: Verification tools, how do we represent that? with versions, compilation options]
+<!-- [TO DISCUSS: Verification tools, how do we represent that? with versions, compilation options] -->
 
 The metadata should be discoverable by all certification stakeholders, including end-users, DApp developers, and ecosystem components, such as light wallets and DApp stores. Information should be indexable by certification issuer, DApp developer, DApp and DApp version.
 
@@ -427,12 +440,11 @@ Certification issuers should be free to add additional fields to fit some additi
 
 
 ### Certification issuers
-| Certification issuer | URL                | Contact email        | Certification levels | Public key                                |
-|----------------------|-----               |---------------       |----------------------|------------                               |
-| Example Ltd.         | http://example.com | contact@example.com  | 1,2                  | EXAMPLEPUBLICKEYPGPED25519 (PGP, ed25519) |
+| Certification issuer | URL                | Contact email        | Certification levels | Cardano address |
+|----------------------|-----               |---------------       |----------------------|------------   |
+| Example Ltd.         | http://example.com | contact@example.com  | 1,2                  | EXAMPLEADDRESS  |
  
 ## Rationale: how does this CIP achieve its goals?
-
 An on-chain solution is preferred as it allows for it to be checkable by any stakeholder and immutable.
 
 Certificate are issued by certification issuers that sign the certificate to prevent certificate forgeries.
@@ -444,7 +456,8 @@ This proposal does not affect any backward compatibility of existing solution bu
 
 ### Other designs considered
 **Updates to registration entries**
-This would have required DApp owner or certification issuers to add certificates to every registration making it harder to maintain a shared state between all stakeholders. The chosen design requires to follow the chain to discover the certificates which should be expected from stakeholders.
+This would have required DApp owner or certification issuers to add certificates to every registration making it harder to maintain a shared state between all stakeholders.
+The chosen design requires to follow the chain to discover the certificates which should be expected from stakeholders.
 
 
 ## Path to Active
@@ -456,11 +469,10 @@ Certificates are being issued under this form by multiple DApps auditors and cer
 Certificates are being displayed by multiple DApps stores or aggregators which uses this format.
 
 ### Implementation Plan
- - [ ] This CIP will be discussed and agreed by the Cardano Certification Working Group where multiple auditors are being represented. This will ensure that certification issuer have agreed on the content and are ready to issue certificates under this format.
+ - [x] This CIP will be discussed and agreed by the Cardano Certification Working Group where multiple auditors are being represented. This will ensure that certification issuer have agreed on the content and are ready to issue certificates under this format.
 
- - [ ] This CIP will be presented to the IOG Lace team and Cardano Fans team which will display certificates for DApps. This is to ensure that the format contains all the necessary information for a DApp store or an aggregator to correctly link and display a certificate from the on-chain and off-chain metadata.
+ - [x] This CIP will be presented to the IOG Lace team and Cardano Fans team which will display certificates for DApps. This is to ensure that the format contains all the necessary information for a DApp store or an aggregator to correctly link and display a certificate from the on-chain and off-chain metadata.
 
 ## Copyright
-<!-- The CIP must be explicitly licensed under acceptable copyright terms. -->
-
+This CIP is licensed under [CC-BY-4.0].
 [CC-BY-4.0]: https://creativecommons.org/licenses/by/4.0/legalcode
