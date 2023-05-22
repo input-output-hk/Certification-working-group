@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Cardano Certification Level Standards</title>
+    <script src='./respec-ccwg-commons.js' async class='remove'></script>
+    <style>
+      table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+      }
+      th, td {
+          padding: 5px;
+      }
+      li.conjunction {list-style-type: none; font-weight: bolder; text-transform: uppercase;}
+
+      *[id^=req-1]:not(.removed), .reqEx-1 { border: 1px purple solid; background-color: #dff; padding: 0.5em }
+      *[id^=req-2]:not(.removed), .reqEx-2 { border: 1px purple double; background-color: #dff; padding: 0.5em }
+      *[id^=req-3]:not(.removed), .reqEx-3 { border: 3px purple dashed; background-color: #dff; padding: 0.5em }
+      *[id^=req-R]:not(.removed), .reqEx-4 { border: 3px gold dashed; background-color: #def; padding: 0.5em }
+      *:not(.removed) > a.selflink::before { content: " 🔗 " }
+    </style>
+  </head>
+
+  <body>
+    <section id='abstract'>
+        This document defines the XXX. 
+    </section>
+
+    <section id='sotd'>
+      This is a draft for the first version of the XXX. 
+
+      The Working Group meets every two weeks on [Discord](https://discord.com/channels/1029837832350605343/1030116075532206101).
+
+      You can send questions on this [Discord Channel](https://discord.com/channels/1029837832350605343/1030116075532206101) or as [GitHub Issues]("https://github.com/input-output-hk/Certification-working-group"). 
+    </section>
+
+    <section id="introduction" class="informative">
+      <h2>Introduction</h2>
+
+      This document is XXX.
+
+
+      [Todo:
+      - What is certification? What certification is NOT?
+      - How to contribute? How to add vulnerabiities?
+      - Process for new versions?
+      - Define the syntax and semantics of the requirements/certification objectives
+      - Laws and other applicable standards? GDPR? MiCA? Common Criteria?
+      ]
+
+    </section>
+
+    <section id='conformance'>
+      <!-- This section is filled automatically by ReSpec. -->
+      <section>
+        <h3> What is certified? </h3>
+
+        A certification refers to a <dfn>DApp</dfn>, which means the source code of the on-chain component of a smart contract or several smart contracts, along the <a>UPLC</a> compiled from the source code and a given parametrisation. [Discussion: Do we want to certify Dapps with general parameters or only instantions of such Dapps?]
+      </section>
+      <section>
+        <h3> On-chain certificates </h3>
+        
+        A <a>DApp</a> 
+        Say something about our CIP on certification metadata.
+      </section>
+      <section>
+        <h3>Who can issue certificates ? </h3>
+
+        This section XXX
+        
+        [Todo:
+        - Do we keep a list of trusted issuer? Can anyone issue certificates?
+        - How do we join the list?
+        - How do we remove someone from the list?
+        ]
+      </section>
+    </section>
+
+    <section id='security'>
+      <h2> Security</h2>
+
+      This section describes XXX.
+
+      <section>
+        <h3>Tool qualification</h3>
+
+        This section describes XXX about the tool used for verification, compilation. 
+      </section>
+
+      <section>
+        <h3>Certificate Issuer Certification</h3>
+
+        This section describes XXX about how a certificate issuer can become authorized to produce <a>Certificates</a>.
+        Auditors are expected to follow the Good Practices for Issuer 
+      </section>
+
+
+    </section>
+    <section id='certlevels'>
+      <h2>Certification Levels</h2>
+
+      Three certification levels are defined, named 1, 2, and 3. [TBC: We have a chance to rename, redefine, reorganize, renumber the levels, etc.]
+
+      <section id='certlevels-l1'>
+        <h3>Level 1: Automated testing</h3> 
+
+        Certification at level 1 is intended for verification of a <a>DApp</a> that can be performed by an unguided automated tool. The tool shall be able to determine if the code meets its requirements and is not vulnerable to some vulnerabilities [Discussion: Should we relate to the list of vulnerabilities and define the ones that can/should be dealt at this level, because the tools can do it].
+
+        [Todo (or not but tbd):
+        - Vulnerabilities to be checked
+        - Metrics to be reached
+        - Tracability to documentation
+        - List of tools/techniques? Fuzzing, mutation testing, concolic testing, symbolic execution, property based testing, etc.?
+        - Tool qualification
+        - [Others?]
+        ]
+      </section>
+
+      <section>
+        <h3>Level 2: Manual audit</h3>
+
+        Certification at level 2 is intended for a <a>DApp</a> that has been carefully reviewed by an auditor, through a manual analysis with possibly the use of automated tools. [Discussion: How de we split this from auditor doing only the work of level 1?]
+
+        Say something about CIP 52.
+
+      </section>
+
+      <section>
+        <h3>Level 3: Formal verification</h3>
+
+        Certification at level 3 is intended for the verification of a <a>DApp</a> that went through formal verification.
+        [Todo (or not but tbd):
+        - What needs to be proven?
+        - Should it really be its own level? 
+        - Who reviews the proof? The assumptions?
+        - Tool qualification
+        - Tracability paper spec/formalized spec/model
+        - [others]
+        ]
+      </section>
+
+
+      <section>
+        <h3> Good practices </h3>
+
+        This section describes good practices 
+
+        [Todo (or not but tbd):
+        - Check new vulnerabilities discovered? Where?
+        - Disclose new vulnerabilities? How?
+        - Use latest stable compilers, testing tools, solvers? etc. 
+        - Open source code?
+        - Readable code?
+        - Documentation? Unless it's mandatory in the levels definition
+        - Coding standard? 
+        - [others?]
+        ]
+
+      </section>
+    </section>
+
+
+
+<script class='remove'>
+
+  var respecConfig = {
+        // Working Groups ids at https://respec.org/w3c/groups/
+        format: "markdown",
+        edDraftURI: "https://github.com/input-output-hk/Certification-working-group",
+        shortName: "CCWG-Certification-Levels",
+        latestVersion: null,
+        license: "CCWG",
+        specStatus: "CCWG",
+        editors: [{
+          name: "Certification Working Group",
+          url: "https://github.com/input-output-hk/Certification-working-group"
+        }],
+        authors: [{
+          name: "Romain Soulat (IOG)",
+          url: "https://github.com/RSoulatIOHK",
+        },
+        {
+          name: "Author 2",
+          url: "https://github.com/author2",
+        }],
+      logos: [{
+        src: '../img/cardano-logo.png',
+        href: "https://github.com/input-output-hk/Certification-working-group",
+        alt: "CCWG",
+        width: 90,
+        height: 90,
+        id: 'CCWG-logo',
+      }],
+        // github: {
+        //   branch: "main",
+        //   repoURL: "user/my-awesome-api", 
+        // },
+        // See https://respec.org/docs/#xref for usage.
+        xref: "web-platform",
+  };  
+</script>
+  </body>
+</html>
