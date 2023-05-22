@@ -4,35 +4,28 @@
     <meta charset='utf-8'>
     <title>Cardano Certification Level Standards</title>
     <script src='./respec-ccwg-commons.js' async class='remove'></script>
-    <style>
-      table, th, td {
-          border: 1px solid black;
-          border-collapse: collapse;
-      }
-      th, td {
-          padding: 5px;
-      }
-      li.conjunction {list-style-type: none; font-weight: bolder; text-transform: uppercase;}
-
-      *[id^=req-1]:not(.removed), .reqEx-1 { border: 1px purple solid; background-color: #dff; padding: 0.5em }
-      *[id^=req-2]:not(.removed), .reqEx-2 { border: 1px purple double; background-color: #dff; padding: 0.5em }
-      *[id^=req-3]:not(.removed), .reqEx-3 { border: 3px purple dashed; background-color: #dff; padding: 0.5em }
-      *[id^=req-R]:not(.removed), .reqEx-4 { border: 3px gold dashed; background-color: #def; padding: 0.5em }
-      *:not(.removed) > a.selflink::before { content: " 🔗 " }
-    </style>
   </head>
 
   <body>
-    <section id='abstract'>
-        This document defines the XXX. 
+    <section id='abstract'> 
+
+        This document defines the specification for certification of smart contracts on the Cardano blockchain. It outlines three different levels of certification which can be used to show that a smart contract went has been reviewed and was found to behave as expected and to not be vulnerable to a set of security weaknesses. 
+
     </section>
 
     <section id='sotd'>
-      This is a draft for the first version of the XXX. 
+      This is a draft for the first version of the Cardano Certification Level Standards. 
 
       The Working Group meets every two weeks on [Discord](https://discord.com/channels/1029837832350605343/1030116075532206101).
 
       You can send questions on this [Discord Channel](https://discord.com/channels/1029837832350605343/1030116075532206101) or as [GitHub Issues]("https://github.com/input-output-hk/Certification-working-group"). 
+
+      [TODO:
+        How do we work on this document?
+        How are section added/removed?
+        How is the content agreed on and validated?
+        ?
+        ]
     </section>
 
     <section id="introduction" class="informative">
@@ -43,25 +36,28 @@
 
       [Todo:
       - What is certification? What certification is NOT?
+      - Who could/should be seeking certifications?
       - How to contribute? How to add vulnerabiities?
       - Process for new versions?
       - Define the syntax and semantics of the requirements/certification objectives
-      - Laws and other applicable standards? GDPR? MiCA? Common Criteria?
+      - Laws and other applicable standards? GDPR? MiCA?
       ]
 
     </section>
 
-    <section id='conformance'>
-      <!-- This section is filled automatically by ReSpec. -->
+    <section id='ccwg-conformance'>
+      <h2> Certification process</h2> 
+
       <section>
         <h3> What is certified? </h3>
 
-        A certification refers to a <dfn>DApp</dfn>, which means the source code of the on-chain component of a smart contract or several smart contracts, along the <a>UPLC</a> compiled from the source code and a given parametrisation. [Discussion: Do we want to certify Dapps with general parameters or only instantions of such Dapps?]
+        A certification refers to a DApp, which means the source code of the on-chain component of a smart contract or several smart contracts, along the UPLC compiled from the source code and a given parametrisation.
+
+        [Discussion: Do we want to certify Dapps with general parameters or only instantions of such Dapps?]
       </section>
       <section>
         <h3> On-chain certificates </h3>
         
-        A <a>DApp</a> 
         Say something about our CIP on certification metadata.
       </section>
       <section>
@@ -77,26 +73,6 @@
       </section>
     </section>
 
-    <section id='security'>
-      <h2> Security</h2>
-
-      This section describes XXX.
-
-      <section>
-        <h3>Tool qualification</h3>
-
-        This section describes XXX about the tool used for verification, compilation. 
-      </section>
-
-      <section>
-        <h3>Certificate Issuer Certification</h3>
-
-        This section describes XXX about how a certificate issuer can become authorized to produce <a>Certificates</a>.
-        Auditors are expected to follow the Good Practices for Issuer 
-      </section>
-
-
-    </section>
     <section id='certlevels'>
       <h2>Certification Levels</h2>
 
@@ -117,7 +93,7 @@
         ]
       </section>
 
-      <section>
+      <section id='certlevels-l2'>
         <h3>Level 2: Manual audit</h3>
 
         Certification at level 2 is intended for a <a>DApp</a> that has been carefully reviewed by an auditor, through a manual analysis with possibly the use of automated tools. [Discussion: How de we split this from auditor doing only the work of level 1?]
@@ -126,15 +102,16 @@
 
       </section>
 
-      <section>
+      <section id='certlevels-l3'>
         <h3>Level 3: Formal verification</h3>
 
         Certification at level 3 is intended for the verification of a <a>DApp</a> that went through formal verification.
+        
         [Todo (or not but tbd):
         - What needs to be proven?
         - Should it really be its own level? 
-        - Who reviews the proof? The assumptions?
-        - Tool qualification
+        - Who reviews the proof? The assumptions? The theorems?
+        - Tool qualification?
         - Tracability paper spec/formalized spec/model
         - [others]
         ]
@@ -160,8 +137,48 @@
       </section>
     </section>
 
+    <section id='tool-qualification'>
+      <h2 data-status="candidate"> Tool qualification</h2>
 
+        This section describes XXX about the tool used for verification, compilation. 
 
+        [TODO:
+          - Do we want something about tool qualification?
+          - Which tools should be in this considerations?
+            - Test generation tools?
+            - Testing frameworks?
+            - Other verification tools?
+            - Emulators?
+            - Compilers?
+            - ?
+          - Do we talk about versions?
+          - Do we point to an approved list? A checklist to be approved?
+          ]
+    </section>
+
+    <section id='certificate-issuer'>
+      <h2 data-status="candidate"> Certificate Issuers</h2>
+
+      Point to CIP-52
+
+      [TODO:
+        - Do we restrict who can issue certificates?
+        - If so, what is the process to become a certificate issuer?
+          - Skills?
+          - Track of issuing audits? Maybe just good level 0 audits?
+          - Well known in the community?
+        - What is the process to be removed from the list of certificate issuer
+        - ?]
+    </section>
+
+    <section>
+      <h2> Appendix </h2>
+
+      <section>
+        <h3> Glossary </h3>
+
+      </section>
+    </section>
 <script class='remove'>
 
   var respecConfig = {
@@ -187,7 +204,7 @@
       logos: [{
         src: '../img/cardano-logo.png',
         href: "https://github.com/input-output-hk/Certification-working-group",
-        alt: "CCWG",
+        alt: "Cardano Logo",
         width: 90,
         height: 90,
         id: 'CCWG-logo',
