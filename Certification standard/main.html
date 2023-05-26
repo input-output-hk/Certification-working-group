@@ -2,14 +2,14 @@
 <html>
   <head>
     <meta charset='utf-8'>
-    <title>Cardano Certification Level Standards</title>
+    <title>Cardano Smart Contract Certification Standard</title>
     <script src='./respec-ccwg-commons.js' async class='remove'></script>
   </head>
 
   <body>
     <section id='abstract'> 
 
-        This document defines the specification for certification of smart contracts on the Cardano blockchain. It outlines three different levels of certification which can be used to show that a smart contract went has been reviewed and was found to behave as expected and to not be vulnerable to a set of security weaknesses. 
+        This document defines the specification for certification of smart contracts on the Cardano blockchain. It outlines three different levels of certification which can be used to show that a DApp has been reviewed and that evidence can be provided to show that it behaves as expected and that no known vulnerability or weakness were detected.
 
     </section>
 
@@ -22,7 +22,7 @@
 
       [TODO:
         How do we work on this document?
-        How are section added/removed?
+        How are sections added/removed?
         How is the content agreed on and validated?
         ?
         ]
@@ -33,7 +33,7 @@
 
       This document is XXX.
 
-
+      
       [Todo:
       - What is certification? What certification is NOT?
       - Who could/should be seeking certifications?
@@ -51,7 +51,7 @@
       <section>
         <h3> What is certified? </h3>
 
-        A certification refers to a DApp, which means the source code of the on-chain component of a smart contract or several smart contracts, along the UPLC compiled from the source code and a given parametrisation.
+        A certification refers to a DApp, which means the source code of the on-chain component of a smart contract or several smart contracts, along the UPLC compiled from the source code and a given instance of a parametric contract.
 
         [Discussion: Do we want to certify Dapps with general parameters or only instantions of such Dapps?]
       </section>
@@ -69,6 +69,7 @@
         - Do we keep a list of trusted issuer? Can anyone issue certificates?
         - How do we join the list?
         - How do we remove someone from the list?
+        - Just list everyone that claim to issue those certificates and leave to DApp stores, aggregators, wallets, users to make the choice themselves?
         ]
       </section>
     </section>
@@ -76,7 +77,19 @@
     <section id='certlevels'>
       <h2>Certification Levels</h2>
 
-      Three certification levels are defined, named 1, 2, and 3. [TBC: We have a chance to rename, redefine, reorganize, renumber the levels, etc.]
+      Three certification levels are defined, named 1, 2, and 3.
+
+      [TBC: We have a chance to rename, redefine, reorganize, renumber the levels, etc.
+
+      SJT: If we're doing that I would argue that the crucial thing is to move away from the numbering, which is somewhat misleading.]
+
+
+      <section id='certlevels-l0'>
+        <h3>Level 0: Audits</h3> 
+
+        Level 0 is reserved for any kind of report, audit result, testing results, vulnerability report, [OTHERS?] that do not meet the standard for any other level of certification.
+
+      </section>
 
       <section id='certlevels-l1'>
         <h3>Level 1: Automated testing</h3> 
@@ -96,7 +109,11 @@
       <section id='certlevels-l2'>
         <h3>Level 2: Manual audit</h3>
 
-        Certification at level 2 is intended for a <a>DApp</a> that has been carefully reviewed by an auditor, through a manual analysis with possibly the use of automated tools. [Discussion: How de we split this from auditor doing only the work of level 1?]
+        Certification at level 2 is intended for a <a>DApp</a> that has been carefully reviewed by an auditor, through a manual analysis with possibly the use of automated tools.
+
+        [Discussion: How do we split this from auditor doing only the work of level 1?
+
+        Proposal from SJT: one distinction between an assessor doing only level 1 and doing level 2 would probably be assessing the quality of the developer-delivered tests, models etc emphasising the earlier comment on line 84.]
 
         Say something about CIP 52.
 
