@@ -24,13 +24,13 @@ Implementing a Cardano Threat Intelligence framework is essential to safeguard t
 
 ## Motivation: why is this CIP necessary?
 
-This CIP is necessary due to the increasing importance of addressing security concerns within the Cardano blockchain ecosystem. As Cardano continues to gain popularity and adoption, it becomes an attractive target for malicious actors seeking to exploit vulnerabilities and compromise the platform's integrity.
+This CIP addresses the growing importance of security within the Cardano blockchain ecosystem. As Cardano gains popularity, it becomes a target for malicious actors seeking to exploit vulnerabilities and compromise the platform's integrity. The primary goal of this CIP is to establish a dedicated framework for Cardano Threat Intelligence (CTI) that proactively identifies, analyzes, and mitigates potential threats and vulnerabilities. By implementing a structured approach, the Cardano community can stay ahead of evolving security risks and ensure the continued resilience and trustworthiness of the network.
 
-The primary motivation behind this CIP is to establish a dedicated framework for Cardano Threat Intelligence (CTI) that proactively identifies, analyzes, and mitigates potential threats and vulnerabilities. By implementing a structured approach to threat intelligence, the Cardano community can stay ahead of evolving security risks and ensure the continued resilience and trustworthiness of the network.
+CTI plays a crucial role in enhancing the overall security posture of Cardano. It enables early detection and assessment of potential threats, facilitating prompt actions to prevent or mitigate their impact. CTI also encourages collaboration among security researchers, experts, and stakeholders, fostering a collective effort to maintain the platform's security. By exchanging information and insights, the community stays informed about emerging threats and evolving attack techniques.
 
-CTI is crucial for several reasons. Firstly, it allows for the early detection and assessment of potential threats, enabling prompt actions to prevent or mitigate their impact. Secondly, CTI helps in enhancing the overall security posture of Cardano by identifying and addressing vulnerabilities and weaknesses before they can be exploited. Additionally, CTI facilitates the sharing of valuable intelligence within the Cardano community and encourages collaboration with security researchers and experts, fostering a collective effort to maintain the platform's security.
+Furthermore, CTI includes post-mortem analysis to properly document exploited vulnerabilities. This analysis provides valuable insights into the root causes, impact, and remediation strategies associated with security incidents. It contributes to continuous improvement in security practices and strengthens the overall robustness of the Cardano ecosystem.
 
-By formalizing the Cardano Threat Intelligence framework through this CIP, we aim to create a standardized and community-driven approach to threat intelligence that enhances the security of Cardano. This framework will empower the community to actively contribute to threat identification, analysis, and mitigation, establishing a proactive and robust security ecosystem for Cardano's sustained growth and success.
+Through the formalization of the Cardano Threat Intelligence framework in this CIP, we aim to create a standardized and community-driven approach to threat intelligence. This empowers the community to actively contribute to threat identification, analysis, and mitigation, establishing a proactive and robust security ecosystem for Cardano's sustained growth and success.
 
 ### Use-cases and Stakeholders
 
@@ -40,7 +40,7 @@ The Cardano Threat Intelligence (CTI) framework has several key use-cases and st
 
 **Cardano Development Teams**: CTI plays a crucial role in supporting Cardano's development teams. By providing valuable intelligence on vulnerabilities and weaknesses, CTI helps inform the development process and encourages the integration of security measures from the early stages. Development teams can use CTI to prioritize security enhancements, address identified issues, and ensure the overall integrity and resilience of Cardano's codebase.
 
-**Cardano Community**: The wider Cardano community benefits from CTI by having access to up-to-date information on potential threats and vulnerabilities. Community members can contribute to CTI by reporting new findings, sharing insights, and collaborating with the CTI management team. CTI empowers community members to actively participate in maintaining the security of the Cardano network and fosters a sense of shared responsibility among stakeholders.
+**Cardano Community**: The Cardano Community also benefits indirectly through improved development processes and enhanced security of the DApps they interact with. By leveraging CTI, the community gains access to up-to-date information about potential threats and vulnerabilities. This allows community members to contribute by reporting new findings, sharing insights, and collaborating with the CTI Watchdogs. By actively participating in CTI, the Cardano community plays a crucial role in maintaining the overall security of the network. This fosters a sense of shared responsibility among stakeholders and strengthens the security of the DApps utilized by the community.
 
 **Exchanges and Wallet Providers**: CTI is of significant importance to exchanges and wallet providers that support Cardano. By integrating CTI into their security practices, these stakeholders can enhance their risk assessment processes, strengthen their defenses against potential threats, and safeguard user assets and sensitive data.
 
@@ -52,7 +52,7 @@ The use-cases and stakeholders mentioned above demonstrate the diverse range of 
 
 ### Definitions
 
-**Vulnerability**: In the context of this CIP, a vulnerability refers to a specific flaw or weakness in the design, implementation, or configuration of the Cardano blockchain platform. It represents a potential security risk that, if successfully exploited, may result in unauthorized access, data breaches, financial loss, or disruption of services. Vulnerabilities require immediate attention and remediation to prevent potential exploitation and protect the security and integrity of the Cardano ecosystem.
+**Vulnerability**:  In the context of this CIP, a vulnerability refers to any specific flaw or weakness in the design, implementation, or configuration of the Cardano blockchain platform or any associated decentralized applications (DApps) within the Cardano ecosystem. It encompasses potential security risks that, if successfully exploited, may lead to unauthorized access, data breaches, financial loss, or service disruptions. Vulnerabilities require immediate attention and remediation to prevent potential exploitation and protect the security and integrity of the Cardano ecosystem.
 
 **Weakness**: A weakness, in the context of this CIP, refers to an inherent limitation, deficiency, or susceptibility within the Cardano ecosystem that may impact its security or performance. Unlike vulnerabilities, weaknesses may not present an immediate or exploitable risk. However, they still require attention to prevent future vulnerabilities from emerging or to optimize the overall security and performance of the Cardano ecosystem.
 
@@ -203,6 +203,10 @@ The Mitigation & Remediation Steps section outlines recommended actions to addre
 
 The References section lists relevant sources and references consulted during the vulnerability/weakness assessment. These may include vendor advisories, known vulnerability/weakness databases, industry-standard security guidelines, and best practices.
 
+#### Tags
+
+The Tags section allows for the inclusion of relevant keywords or labels that aid in categorizing and classifying the vulnerability or weakness described in the CTI template. These tags serve as additional metadata, helping to search and filter vulnerabilities or weaknesses based on specific criteria. They improve information discoverability and accessibility, ensuring that relevant vulnerabilities or weaknesses can be identified efficiently. Tags can include various aspects related to the vulnerability, such as related technologies, concepts, affected components, or potential impact. CTI watchdogs will establish conventions or agreed-upon keywords for adding tags, which should be concise, descriptive, and representative of the key attributes or characteristics of the vulnerability or weakness.
+
 ## Rationale: how does this CIP achieve its goals?
 
 ### CTI Watchdogs
@@ -229,7 +233,7 @@ The selection process for CTI Watchdogs members aims to ensure a diverse and cap
 
 The selection of CTI Watchdogs members follow a rigorous and transparent approach that includes the following steps:
 
-**Establishment of Criteria**: The IOG certification group, in collaboration with relevant stakeholders, defines the criteria and qualifications required for CTI Watchdogs members. This may include specific technical skills, experience in vulnerability assessment and analysis, familiarity with Cardano's ecosystem and different smart contract programming languages, and a track record of contributing to the security of blockchain platforms.
+**Establishment of Criteria**: The CTI Watchdogs, in collaboration with relevant stakeholders, defines the criteria and qualifications required for CTI Watchdogs members. This may include specific technical skills, experience in vulnerability assessment and analysis, familiarity with Cardano's ecosystem and different smart contract programming languages, and a track record of contributing to the security of blockchain platforms.
 
 **Application and Nomination**: Interested individuals can submit applications or nominations for consideration as CTI Watchdogs members. This will be done through CTI Watchdogs Discord server. The application/nomination process allows individuals to showcase their qualifications, experience, and commitment to contributing to Cardano's security.
 
@@ -240,6 +244,22 @@ The selection of CTI Watchdogs members follow a rigorous and transparent approac
 **Community Engagement**: To ensure a transparent and community-driven process, the final selection of CTI Watchdogs members may involve gathering input and feedback from the Cardano community. This will be done through CTI Watchdogs dedicated Discord server and tweeter account. The community's perspectives and insights are valuable in identifying individuals who can effectively represent and serve the community's interests.
 
 **Appointment and Ongoing Evaluation**: Based on the evaluations, interviews, and community feedback, the selected CTI Watchdogs members are appointed to their roles. Regular evaluation and performance assessments can be conducted to ensure their continued effectiveness and alignment with the goals of the CTI framework.
+
+#### Removal from CTI Watchdogs
+
+To ensure the effectiveness and integrity of the CTI Watchdogs within the Cardano Threat Intelligence (CTI) framework, it is important to have a process in place for removing individuals or organizations under certain circumstances. The process will follow the steps outlined below:
+
+**Assessment and Identification**: The need for removing a member from the CTI Watchdogs may arise due to various reasons, such as ceasing activity, failure to meet standards, or a member leaving the organization they represent. The first step is to assess the situation and identify the specific circumstances that warrant the removal.
+
+**Review and Evaluation**: Once the need for removal is identified, a thorough review and evaluation will be conducted. This may involve examining the individual or organization's contributions, adherence to guidelines, responsiveness, and overall effectiveness in fulfilling their CTI Watchdogs responsibilities. It is important to gather sufficient evidence and consider multiple perspectives during this evaluation process.
+
+**Decision-Making**: Based on the review and evaluation, a decision will be made regarding the removal. This decision may involve considering factors such as the severity and frequency of the issues observed, the impact on the CTI Watchdogs' effectiveness, and the overall goals and standards of the CTI framework. The decision will be fair, transparent, and consistent with the established CTI Watchdogs governance processes.
+
+**Communication**: Once the decision to remove a member from the CTI Watchdogs is made, clear and transparent communication is essential. The member or organization in question will be informed of the decision, along with the reasons and any specific feedback or concerns identified during the evaluation process. It is important to maintain professionalism and respect during this communication to minimize potential conflicts or misunderstandings.
+
+**Transition and Continuity**: If a member is being removed due to leaving the organization they represent, a plan will be in place to ensure a smooth transition. This may involve identifying a replacement from the same organization or initiating a selection process to fill the vacant position. The transition will be managed effectively to avoid disruptions to the CTI Watchdogs' activities and maintain continuity in the responsibilities.
+
+**Documentation and Learning**: It is crucial to document the entire process of removing a member from the CTI Watchdogs. This documentation will include the rationale, decision, and any relevant details regarding the evaluation and communication. It serves as a reference for future actions and helps maintain transparency and accountability within the CTI framework. Additionally, it provides an opportunity for learning and improvement in the CTI Watchdogs' selection and evaluation processes.
 
 ### CTI Disclosure
 
@@ -263,7 +283,7 @@ The CTI Disclosure process can be outlined in the following steps:
 
 **CTI Identifier Assignment**: During the disclosure process, the CTI Watchdogs assign a unique CTI identifier to the vulnerability or weakness. This identifier follows the CTI Identifier format (CTI-YYYY-AAA-TT-N) and serves as a standardized reference for the disclosed issue within the Cardano Threat Intelligence repository.
 
-**CTI Template Format Disclosure**: The CTI Watchdogs disclose the vulnerability or weakness using the CTI template format, including the CTI identifier, in their public disclosure statement. This format ensures consistency and facilitates easy identification and reference for security researchers, developers, and blockchain experts seeking to understand and address the disclosed issue.
+**CTI Template Format Disclosure**: The CTI Watchdogs disclose the vulnerability or weakness using the CTI template format, including the CTI identifier, in the CTI repository. This format ensures consistency and facilitates easy identification and reference for security researchers, developers, and blockchain experts seeking to understand and address the disclosed issue.
 
 **Follow-up and Updates**: The CTI Watchdogs continue to monitor the situation, ensuring that the mitigation measures are effective, and actively engage with the Cardano community to address any concerns or questions related to the disclosed vulnerability or weakness. They provide updates and guidance as necessary to assist users and stakeholders in securing their Cardano deployments.
 
