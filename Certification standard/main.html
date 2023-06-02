@@ -4,6 +4,19 @@
     <meta charset='utf-8'>
     <title>Cardano Smart Contract Certification Standard</title>
     <script src='./respec-ccwg-commons.js' async class='remove'></script>
+
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+        }
+        li.conjunction {list-style-type: none; font-weight: bolder; text-transform: uppercase;}
+
+        *[id^=req]:not(.removed), .reqEx { border: 3px green solid; background-color: #55C385; padding: 0.5em }
+    </style>
   </head>
 
   <body>
@@ -14,30 +27,43 @@
     </section>
 
     <section id='sotd'>
-      This is a draft for the first version of the Cardano Certification Level Standards. 
+      This is a draft for the first version of the Cardano Smart Contract Certification Standard. 
 
       The Working Group meets every two weeks on [Discord](https://discord.com/channels/1029837832350605343/1030116075532206101).
 
       You can send questions on this [Discord Channel](https://discord.com/channels/1029837832350605343/1030116075532206101) or as [GitHub Issues]("https://github.com/input-output-hk/Certification-working-group"). 
 
-      [TODO:
-        How do we work on this document?
-        How are sections added/removed?
-        How is the content agreed on and validated?
-        ?
-        ]
+      Any modification to an existing section, the addition or the removal of a section needs to be approved according to the decision procedure of the [Working group charter](https://docs.google.com/document/d/1FdQbxcfevM8kdI3vUW8_-9gGv7pk-8fJBU-9No8DFSo/). Any such modification shall be made as a pull request to the current working version and approved during a working group session. 
+
+
     </section>
 
     <section id="introduction" class="informative">
       <h2>Introduction</h2>
 
-      This document is XXX.
+      This document is the working version for a first version of the Cardano Smart Contract Certification Standard. It defines the requirements for granting a certificate to a DApp.
 
-      
+      [*What is certification? What certification is NOT?*]
+
+      A certification is a claim that a <a>DApp</a> has undergone sufficient review by a <a>Certificate Issuer</a>. The Certificate Issuer has found that the DApp is not vulnerable to an established list of <a>weaknesses</a> and failures and that the DApp performs according to its specification.
+
+      A certificate is **not** an absolute guarantee that the DApp is secure against all possible attacks or vulnerabilities.
+
+      The certificate is backed by the <a>Certificate Issuer</a>'s expertise and reputation.
+      It is also backed by the collective work of the <a>Cardano Certification Working Group</a> that has established the standard for certification.
+      The <a>Cardano Certification Working Group</a> established and maintains a list of weaknesses so this standard stays up-to-date to the latest security findings.
+
+      The <a>Cardano Certification Working Group</a> thinks all DApp developers should seek some level of certification.
+      One goal for this standard is to make it achievable by everyone to obtain some level of certification while maintaining a high level of requirement.
+      The goal is also to establish certification level high enough that DApps that require the highest level of security.
+
+      [Process for new versions?]
+
+      New versions of this document are expected to be released every [XX amount of time] by the Cardano Certification Working Group. 
+
+
+
       [Todo:
-      - What is certification? What certification is NOT?
-      - Who could/should be seeking certifications?
-      - How to contribute? How to add vulnerabiities?
       - Process for new versions?
       - Define the syntax and semantics of the requirements/certification objectives
       - Laws and other applicable standards? GDPR? MiCA?
@@ -55,15 +81,24 @@
 
         [Discussion: Do we want to certify Dapps with general parameters or only instantions of such Dapps?]
       </section>
-      <section>
+
+
+      <section id='on-chain-certificates'>
         <h3> On-chain certificates </h3>
         
-        Say something about our CIP on certification metadata.
+        Certificates 
+
+        <p class="reqEx">
+          <b>CIP-0096 Compliance</b><br>
+          A <a>Certificate</a> shall be broadcasted on the <a>Cardano Mainnet</a> and be compliant with CIP-0096.
+        </p>
+
       </section>
-      <section>
+
+      <section id='certificate-issuer'>
         <h3>Who can issue certificates ? </h3>
 
-        This section XXX
+        This section describes how someone can become a recognized 
         
         [Todo:
         - Do we keep a list of trusted issuer? Can anyone issue certificates?
@@ -197,6 +232,352 @@
       </section>
     </section>
 <script class='remove'>
+
+// Wrapper function for the Requirements Summary, Defined Terms, and the
+// Events, Functions, and Parameters functions.
+function postProcess(){
+  reqSummary();
+  defTerms();
+  document.querySelector("[rel='canonical']").remove()
+  document.querySelector('#conformance > p').remove()
+}
+
+// Clones all requirements in the doc into the Summary of Requirements section.
+function reqSummary () {
+  // Get all the requirements in the specification.
+  var allReqs = document.querySelectorAll("[id^='req']:not(.removed)");
+  // Loop through each requirement.
+  for (i = 0; i < allReqs.length; i++) {
+
+    // add a self-link
+    var selfLinkMe = document.createElement('a');
+    selfLinkMe.href = "#" + allReqs[i].id;
+    selfLinkMe.className = "selflink";
+    allReqs[i].querySelector('b').appendChild(selfLinkMe);
+
+    // Clone the requirement.
+    var req = allReqs[i].cloneNode(true);
+
+    // In each requirement, replace any dfn tags with anchor tags.
+    // Get all dfn elements in the requirement.
+    var allDfns = req.getElementsByTagName("dfn");
+    // Loop through each dfn
+    for (j = 0; j < allDfns.length; j++) {
+      // Create an empty anchor element
+      var anchor = document.createElement("a");
+      // Use the dfn text as the href text, convert it to lower case,
+      // and replace spaces with hyphens.
+      var hreftext=allDfns[j].innerText.toLowerCase();
+      hreftext=hreftext.replace(/ /g,"-");
+      // Set the href attribute on the anchor element
+      anchor.setAttribute("href", "#dfn-" + hreftext);
+      // Set the HTML for the anchor element as the HTML of the dfn element.
+      anchor.innerHTML = allDfns[j].innerHTML;
+      // Insert the anchor element before the dfn element.
+      req.insertBefore(anchor, allDfns[j]);
+      // Remove the dfn element.
+      req.removeChild(allDfns[j]);
+    }
+
+    // Get the HTML text, id, class, and tag name from the requirement.
+    var reqhtml = req.innerHTML;
+    var reqid = req.id;
+    var reqclass = req.className;
+    var reqtagname = req.tagName;
+
+    // reqid and reqclass determines the requirement type. If:
+    // - id=req-* & !class          A regular requirement in a paragraph, or
+    //                              sometimes with an ordinary list
+    // - id=reqg-* & !class         An ordinary sentence preceding a requirement
+    //                              list
+    // - id=req-* & class=reqitem   A requirement item in a list. The list
+    //                              follows an ordinary sentence.
+
+    // Test for the requirement type and process accordingly.
+    if (reqid.slice(0,4) == "req-" && !reqclass) {
+      // Update the HTML text, wrapping the requirement number in anchor tags to
+      // link back to original requirement.
+      var tmp = reqhtml.replace("<b>","<a href=\"#" + reqid + "\"><b>");
+      var newreqhtml = tmp.replace("</b>","</b></a>");
+      // Create an empty p or div node to contain the requirement.
+      // p if it's a regular requirement in a para, or div if the requirement
+      // also has an ordinary list with it.
+      if (reqtagname == "P") {
+        var nodetype = "p";
+      } else if (reqtagname == "B") { var nodetype = 0; }
+      else {
+        var nodetype = "div";
+      }
+      if (nodetype) {
+        var node = document.createElement(nodetype);
+      // Assign a unique id to the node.
+      node.id = "summ-" + reqid;
+      // Append the empty node to Summary of Requirements section.
+      document.getElementById("sec-summary-of-requirements").appendChild(node);
+      // Assign the updated HTML text to the node.
+      document.getElementById(node.id).innerHTML = newreqhtml;}
+      }
+    if (reqid.slice(0,4) == "reqg" && !reqclass) {
+      // Create an empty p node to contain the ordinary sentence.
+      var node = document.createElement("p");
+      // Assign a unique id to the node.
+      node.id = "summ-" + reqid;
+      // Append the empty node to Summary of Requirements section.
+      document.getElementById("sec-summary-of-requirements").appendChild(node);
+      // Assign the unchanged HTML text to the paragraph node.
+      document.getElementById(node.id).innerHTML = reqhtml;
+      // Create an empty ul node to contain the requirements list.
+      list = document.createElement("ul");
+      // Assign a unique id to the node.
+      list.id = "list-" + reqid;
+      // Append the empty node to Summary of Requirements section.
+      document.getElementById("sec-summary-of-requirements").appendChild(list);
+      }
+    if (reqid.slice(0,4) == "req-" && reqclass == "reqitem") {
+      // Update the HTML text, wrapping the requirement number in anchor tags to
+      // link back to original requirement.
+      var tmp = reqhtml.replace("<b>","<a href=\"#" + reqid + "\"><b>");
+      var newreqhtml = tmp.replace("</b>","</b></a>");
+      // Create an empty li node to contain the requirement.
+      var node = document.createElement("li");
+      // Assign a unique id to the node.
+      node.id = "summ-" + reqid;
+      // Append the empty node to the previously created ul node.
+      document.getElementById(list.id).appendChild(node);
+      // Assign the updated HTML text to the node.
+      document.getElementById(node.id).innerHTML = newreqhtml;
+    }
+
+  }
+}
+
+// Retrieves all defined terms in the doc, sorts them, and lists them in the
+// Defined Terms section.
+function defTerms () {
+  // Get all the definitions in the specification.
+  var allDfns = document.getElementsByTagName("dfn");
+  // Can't sort an HTMLCollection, so put it into array first, then sort it.
+  allDfns = Array.prototype.slice.call(allDfns);
+  allDfns.sort(function(a, b){
+      return a.textContent.localeCompare(b.textContent);
+  });
+  // Loop through each definition.
+  for (i = 0; i < allDfns.length; i++) {
+    // Clone the definition.
+    var dfn = allDfns[i].cloneNode(true);
+    // Get the HTML text from the definition.
+    var dfnhtml = dfn.innerHTML;
+    // If it's a code definition (functions, events, etc.) skip it.
+    if (dfnhtml.slice(0,6) == "<code>") {
+      continue;
+    }
+    // Test for strings to keep as upper case, otherwise convert to lower case.
+    var stringexists = false;
+    var setofstrings = ['Ethereum', 'DEV', 'Apps'];
+    for (var j =0; j < setofstrings.length; j++) {
+      if (dfnhtml.indexOf(setofstrings[j]) != -1) {
+        stringexists = true;
+      }
+    }
+    if (!stringexists) {
+      dfnhtml = dfnhtml.toLowerCase();
+    }
+    // Get the data-lt attribute, if it exists, to use as the href value.
+    var datalt = dfn.getAttribute("data-lt");
+    // If a data-lt attribute exists, get it, otherwise use the HTML text.
+    if (datalt) {
+      // Get the position of the first pipe character.
+      var pipepos = datalt.indexOf("|");
+      // If no pipe char, use the whole text, otherwise up to the first pipe.
+      if (pipepos == -1) {
+        var x = datalt;
+      } else {
+        var x = datalt.slice(0,pipepos);
+      }
+    } else {
+      var x = dfnhtml;
+    }
+    // Convert the href text to lower case and replace spaces with hyphens.
+    var dfnhref = x.toLowerCase().replace(/ /g,"-");
+
+    // Create an empty li node
+    var item = document.createElement("li");
+    // Assign a unique id to the li node.
+    item.id = "item-" + i;
+    // Append the empty node to the respec-dfn-list ul node.
+    var dfnlist = document.getElementsByClassName("respec-dfn-list");
+    dfnlist[0].appendChild(item);
+
+    // Create an empty anchor node to contain the link.
+    var anchor = document.createElement("a");
+    // Assign a unique id to the anchor node.
+    anchor.id = "dfnanchor-" + i;
+    anchor.setAttribute("href", "#dfn-" + dfnhref);
+    // Append the empty a node to the li node.
+    document.getElementById(item.id).appendChild(anchor);
+    // Assign the updated HTML text to the paragraph node.
+    document.getElementById(anchor.id).innerHTML = dfnhtml;
+  }
+}
+
+// Retrieves all defined events, functions, and parameters in the doc, sorts
+// them and lists them in the Defined Events, Functions, and Parameters section.
+function eventsFunctionsParams () {
+  // Get all the events, functions, and parameters (EFPs) in the specification.
+  var allEFPs = document.querySelectorAll(".event, .function, .eparameter, .fparameter, .nparameter");
+  // Can't sort an HTMLCollection, so put it into array first, then sort it.
+  allEFPs = Array.prototype.slice.call(allEFPs);
+  allEFPs.sort(function(a, b){
+      return a.textContent.localeCompare(b.textContent);
+  });
+
+  // Loop through each EFP and list it in the section.
+  for (i = 0; i < allEFPs.length; i++) {
+    // Clone the EFP.
+    var efp = allEFPs[i].cloneNode(true);
+
+    // Get the classes from the EFP and define variables depending on the number
+    // of classes.
+    var efpclass = efp.classList;
+    var oneclass, twoclasses, threeclasses, fourplusclasses;
+    oneclass = twoclasses = threeclasses = fourplusclasses = false;
+    switch (efpclass.length.valueOf()) {
+      case 1:
+        oneclass = true;
+        break;
+      case 2:
+        twoclasses = true;
+        break;
+      case 3:
+        threeclasses = true;
+        break;
+      default:
+        fourplusclasses = true;
+  }
+
+    // List the EFP and the first EFP class (event, function, or parameter)
+    // Get the HTML text from the EFP.
+    var efphtml = efp.innerHTML;
+    // Get the plain text from the EFP.
+    var efptext = efp.innerText;
+    // Get the data-lt attribute, if it exists, to use as the href value.
+    var datalt = efp.getAttribute("data-lt");
+    // If a data-lt attribute exists, get it, otherwise use the plain text.
+    if (datalt) {
+      // Get the position of the first pipe character.
+      var pipepos = datalt.indexOf("|");
+      // If no pipe char, use the whole text, otherwise up to the first pipe.
+      if (pipepos == -1) {
+        var x = datalt;
+      } else {
+        var x = datalt.slice(0,pipepos);
+      }
+    } else {
+      var x = efptext;
+    }
+    // Convert the href text to lower case and replace spaces with hyphens.
+    var efphref = x.toLowerCase().replace(/ /g,"-");
+    // Create an empty li node
+    var item = document.createElement("li");
+    // Assign a unique id to the li node.
+    item.id = "efp-" + i;
+    // Append the empty node to the efp-list ul node.
+    var efplist = document.getElementById("efp-list");
+    efplist.appendChild(item);
+    // Create an empty anchor node to contain the link.
+    var anchor = document.createElement("a");
+    // Assign a unique id to the anchor node.
+    anchor.id = "efp-anchor-" + i;
+    anchor.setAttribute("href", "#dfn-" + efphref);
+    // Append the empty a node to the li node.
+    document.getElementById(item.id).appendChild(anchor);
+    // Assign the updated HTML text to the a node.
+    document.getElementById(anchor.id).innerHTML = efphtml;
+    // Test if it's any kind of parameter, and if so, insert a space and the
+    // first EFP class (event, funtion, or parameter)
+    var parampos = efpclass.item(0).indexOf("parameter");
+    if (parampos == 1) {
+      document.getElementById(item.id).insertAdjacentText("beforeend", " parameter");
+    } else {
+      document.getElementById(item.id).insertAdjacentText("beforeend", " " + efpclass.item(0));
+    }
+
+    // If more than one class, it's a parameter that belongs to network config,
+    // an event, or a function
+    if (efpclass.length >= 2) {
+      //Insert " in the " in preparation for "network configuration", or the
+      // event or function name(s).
+      document.getElementById(item.id).insertAdjacentText("beforeend", " in the ");
+    // Set up the lastclass and nexttolastclass variables.
+      var lastclass, nexttolastclass;
+      lastclass = nexttolastclass = false;
+
+      // Loop through the classes, starting with the 2nd class
+      for (j = 1; j < efpclass.length; j++) {
+
+        // Test if lastclass or nexttolastclass.
+        if (j == efpclass.length-1) {
+          lastclass = true;
+        } else if (j == efpclass.length-2) {
+          nexttolastclass = true;
+        }
+
+        // Create an empty anchor node to contain the event.
+        var anchor = document.createElement("a");
+        // Assign a unique id to the anchor node.
+        anchor.id = "anchor-" + i + "-" + j;
+        anchor.setAttribute("href", "#dfn-" + efpclass.item(j).toLowerCase());
+        // Append the empty a node to the li node.
+        document.getElementById(item.id).appendChild(anchor);
+        // Assign the class text to the a node.
+        // If it's "network-configuration", assign "network configuration" to
+        // the a node, and then we're done so break out of the loop.
+        if (efpclass.item(j) == "network-configuration") {
+          document.getElementById(anchor.id).innerHTML = "network configuration";
+          break;
+        } else {
+        // Otherwise, it's an event or function that the parameter belongs to
+        // so wrap it in <code> tags, then assign it to the a node.
+          var event_html = "<code>" + efpclass.item(j) + "</code>";
+          document.getElementById(anchor.id).innerHTML = event_html;
+        }
+
+        // If it's the last class, insert either "event" or "function".
+        if (lastclass) {
+          if (efpclass.item(0) == "eparameter") {
+            document.getElementById(item.id).insertAdjacentText("beforeend", " event");
+          } else {
+            document.getElementById(item.id).insertAdjacentText("beforeend", " function");
+          }
+          // If three or more classes (that is multiple events or functions),
+          // insert "s" to pluralize "event" or "function".
+          if (!twoclasses) {
+            document.getElementById(item.id).insertAdjacentText("beforeend", "s");
+          }
+          // We're done so break out of the loop.
+          break;
+        }
+        // If 3 classes, write " and " in preparation for the next class.
+        if (threeclasses) {
+          document.getElementById(item.id).insertAdjacentText("beforeend", " and ");
+        }
+
+        // If 4 or more classes, if next to last class, write ", and " in
+        // preparation for the last event, otherwise write ", "
+        if (fourplusclasses) {
+          if (nexttolastclass) {
+            document.getElementById(item.id).insertAdjacentText("beforeend", ", and ");
+          } else {
+            document.getElementById(item.id).insertAdjacentText("beforeend", ", ");
+          }
+        }
+      }
+    }
+  }
+
+  // Finalize the list with a period at the end of the last list item.
+  document.getElementById(item.id).insertAdjacentText("beforeend", ".");
+}
 
   var respecConfig = {
         // Working Groups ids at https://respec.org/w3c/groups/
