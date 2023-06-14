@@ -22,7 +22,7 @@
   <body>
     <section id='abstract'> 
 
-        This document defines the specification for certification of smart contracts on the Cardano blockchain. It outlines three different levels of certification which can be used to show that a DApp has been reviewed and that evidence can be provided to show that it behaves as expected and that no known vulnerability or weakness were detected.
+      This document defines the specification for certification of smart contracts on the Cardano blockchain. It outlines three different levels of certification which can be used to show that a DApp has been reviewed and that evidence can be provided to show that it behaves as expected and that no known vulnerability or weakness were detected.
 
     </section>
 
@@ -50,7 +50,8 @@
       A certificate is **not** an absolute guarantee that the DApp is secure against all possible attacks or vulnerabilities.
 
       The certificate is backed by the <a>Certificate Issuer</a>'s expertise and reputation.
-      It is also backed by the collective work of the <a>Cardano Certification Working Group</a> that has established the standard for certification.
+      It is also backed by the collective work of the <a>Cardano Certification Working Group</a> that has established the standard for certification. The <dfn>Cardano Certification Working Group</dfn> is meant to develop, promote and maintain best practice and standards for audit and certification activities for Cardano smart contracts.The group also has the ability to create  roadmaps for tools and technologies, to foster collaboration between tool builders and providers, and to promote interaction with similar bodies for other blockchains.
+
       The <a>Cardano Certification Working Group</a> established and maintains a list of weaknesses so this standard stays up-to-date to the latest security findings.
 
       The <a>Cardano Certification Working Group</a> thinks all DApp developers should seek some level of certification.
@@ -63,10 +64,18 @@
 
 
 
-      [Todo:
+      [To do :
       - Define the syntax and semantics of the requirements/certification objectives
-      - Laws and other applicable standards? GDPR? MiCA?
       ]
+
+
+
+      [tbd: Laws and other applicable standards? GDPR? MiCA?]
+
+      The CCWG Standard does not 
+
+
+      [tbd: - Protection profiles?]
 
     </section>
 
@@ -76,7 +85,7 @@
       <section>
         <h3> What is certified? </h3>
 
-        A certification refers to a DApp, which is characterised by the whole on-chain component of a smart contract or several smart contracts. Another way of defining a certification of a DApp is that all the UPLC compiled from the source code has been reviewed according to the standard defined in this document. 
+        A certification refers to a <a>DApp</a>, which is characterised by the whole on-chain component of a smart contract or several smart contracts. Another way of defining a certification of a DApp is that all the UPLC compiled from the source code has been reviewed according to the standard defined in this document. 
 
         [Discussion: Do we want to certify Dapps with general parameters or only instantions of such Dapps?]
       </section>
@@ -97,11 +106,12 @@
       <section id='certificate-issuer'>
         <h3>Who can issue certificates ? </h3>
 
-        This section describes how someone can become a recognized 
+        This section describes how someone can become a recognized as a <dfn>Certificate Issuer</dfn>, an entity which certificates can be trusted as truthful and whose skills are recognized in the community.
         
         [Todo:
         - Do we keep a list of trusted issuer? Can anyone issue certificates?
         - How do we join the list?
+        - Legal disclaimer?
         - How do we remove someone from the list?
         - Just list everyone that claim to issue those certificates and leave to DApp stores, aggregators, wallets, users to make the choice themselves?
         ]
