@@ -20,7 +20,7 @@ Threat intelligence in Cardano is gathered through diverse methods, including mo
 
 The benefits of Cardano Threat Intelligence are significant, enabling early threat identification, enhanced network security, mitigation of financial and reputational risks, and staying ahead of emerging threats and vulnerabilities.
 
-Implementing a Cardano Threat Intelligence framework is essential to safeguard the ecosystem. By leveraging threat intelligence practices and maintaining a well-organized repository, the Cardano community can proactively address vulnerabilities and ensure the ongoing security and trustworthiness of the network.
+Implementing a Cardano Threat Intelligence framework is essential to safeguard the ecosystem. By leveraging threat intelligence practices and maintaining a well-organized repository, the Cardano community can proactively address vulnerabilities or weaknesses and ensure the ongoing security and trustworthiness of the network.
 
 ## Motivation: why is this CIP necessary?
 
@@ -52,9 +52,9 @@ The use-cases and stakeholders mentioned above demonstrate the diverse range of 
 
 ### Definitions
 
-**Vulnerability**:  In the context of this CIP, a vulnerability refers to any specific flaw or weakness in the design, implementation, or configuration of the Cardano blockchain platform or any associated decentralized applications (DApps) within the Cardano ecosystem. It encompasses potential security risks that, if successfully exploited, may lead to unauthorized access, data breaches, financial loss, or service disruptions. Vulnerabilities require immediate attention and remediation to prevent potential exploitation and protect the security and integrity of the Cardano ecosystem.
-
 **Weakness**: A weakness, in the context of this CIP, refers to an inherent limitation, deficiency, or susceptibility within the Cardano ecosystem that may impact its security or performance. Unlike vulnerabilities, weaknesses may not present an immediate or exploitable risk. However, they still require attention to prevent future vulnerabilities from emerging or to optimize the overall security and performance of the Cardano ecosystem.
+
+**Vulnerability**: In the context of this CIP, a vulnerability refers to any specific flaw in the design, implementation, or configuration of the Cardano blockchain platform or any associated decentralized applications (DApps) within the Cardano ecosystem. It encompasses potential security risks that, if successfully exploited, may lead to unauthorized access, data breaches, financial loss, or service disruptions. Vulnerabilities require immediate attention and remediation to prevent potential exploitation and protect the security and integrity of the Cardano ecosystem.
 
 **Cardano Threat Intelligence (CTI)**: Cardano Threat Intelligence is the practice of gathering, analyzing, and disseminating information about potential threats, vulnerabilities, and weaknesses within the Cardano blockchain platform. CTI aims to provide proactive insights and mitigation strategies to enhance the security and resilience of the network.
 
@@ -68,10 +68,7 @@ The use-cases and stakeholders mentioned above demonstrate the diverse range of 
 
 The CTI repository serves as a location for storing and managing the collection of vulnerabilities and weaknesses discovered within the Cardano ecosystem. It provides a structured and organized approach to categorize and document these security findings, ensuring that they are easily accessible and retrievable by relevant stakeholders.
 
-<!---
-???? = IOG (Input Output Global) or Cardano Foundation GitHub account
--->
-The CTI repository will be hosted under the ???? GitHub account. The location of the CTI repository within the ???? GitHub account will provide a hub for security researchers, developers, and other stakeholders to contribute to the identification, analysis, and resolution of vulnerabilities and weaknesses within the Cardano ecosystem. It allows for efficient collaboration, version control, and transparency in the handling of security-related issues.
+The CTI repository will be hosted under the Cardano Foundation GitHub account. The location of the CTI repository within the Cardano Foundation GitHub account will provide a hub for security researchers, developers, and other stakeholders to contribute to the identification, analysis, and resolution of vulnerabilities and weaknesses within the Cardano ecosystem. It allows for efficient collaboration, version control, and transparency in the handling of security-related issues.
 
 ### CTI Identifier (ID)
 
@@ -140,9 +137,9 @@ This section provides descriptive information about each component of the CTI te
 
 The Author section includes information about the person or team responsible for identifying the vulnerability/weakness. It specifies their names, roles, organization or company affiliation, and contact information. Additionally, any relevant certifications or qualifications held by the individuals or team may be mentioned.
 
-#### Summary
+#### Short Summary
 
-The Summary section provides a brief overview of the vulnerability/weakness finding. It includes a descriptive title that accurately summarizes the nature of the identified vulnerability/weakness.
+The Short Summary section provides a brief overview of the vulnerability/weakness finding. It includes a descriptive title that accurately summarizes the nature of the identified vulnerability/weakness.
 
 #### Description
 
