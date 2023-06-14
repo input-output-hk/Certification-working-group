@@ -73,13 +73,11 @@ The CTI repository serves as a location for storing and managing the collection 
 -->
 The CTI repository will be hosted under the ???? GitHub account. The location of the CTI repository within the ???? GitHub account will provide a hub for security researchers, developers, and other stakeholders to contribute to the identification, analysis, and resolution of vulnerabilities and weaknesses within the Cardano ecosystem. It allows for efficient collaboration, version control, and transparency in the handling of security-related issues.
 
-### CTI Identifier
+### CTI Identifier (ID)
+
+The Cardano Threat Intelligence (CTI) repository follows a specific format and numbering system to categorize vulnerabilities and weaknesses based on the different layers of Cardano's blockchain. This system provides a comprehensive and standardized approach to organize and reference vulnerabilities within the Cardano ecosystem. The use of CTI ensures that two or more parties can confidently refer to a CTI identifier (ID) when discussing or sharing information about a unique vulnerability. By establishing a consistent identification system, the CTI repository promotes clear and effective communication among stakeholders, enabling efficient collaboration and knowledge sharing in addressing and mitigating vulnerabilities within the Cardano ecosystem.
 
 #### Categorization System and Numbering Scheme
-
-The Cardano Threat Intelligence (CTI) repository follows a specific format and numbering system to categorize vulnerabilities and weaknesses based on the different layers of Cardano's blockchain. This system provides a comprehensive and standardized approach to organize and reference vulnerabilities within the Cardano ecosystem.
-
-##### Properties
 
 The CTI numbering system is structured as follows:
 
@@ -171,13 +169,49 @@ Combining likelihood and difficulty factors can help to determine the overall ri
 
 As part of the risk assessment, it is important to describe the potential impact of the vulnerability or weakness on the organization, as well as any potential legal or regulatory consequences.
 
-- **Severity:** This assigns a level of severity to the vulnerability or weakness based on the risk assessment. The severity levels can range from High to Informational. The severity levels can be defined as follows:
+- **Severity:** This assigns a level of severity to the vulnerability or weakness based on the risk assessment. The severity levels can range from Critical to Informational. The severity levels can be defined as follows:
+  - **Critical:** Vulnerabilities/Weaknesses that pose significant risks and require immediate attention and remediation.
   - **High:** Vulnerabilities/Weaknesses that can be easily exploited with a high impact.
   - **Medium:** Vulnerabilities/Weaknesses that can be exploited with some effort or have moderate impact.
   - **Low:** Vulnerabilities/Weaknesses that require significant effort to exploit or have low impact.
   - **Informational:** Vulnerabilities/Weaknesses that do not pose a significant risk by themselves but may provide useful information for attackers or reveal deficiencies in the security posture of the system.
 
-Note that the severity level should be determined based on the combined assessment of likelihood/difficulty and impact.
+The severity level is determined based on the combined assessment of likelihood/difficulty and impact. To provide clear guidance for severity levels, the following classification table has been created.
+
+<table>
+  <thead>
+    <tr>
+      <th>Likelihood</th>
+      <th colspan="3">Impact</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center"></td>
+      <td align="center">High</td>
+      <td align="center">Medium</td>
+      <td align="center">Low</td>
+    </tr>
+    <tr>
+      <td align="Left">High</td>
+      <td align="center"><code>Critical</code></td>
+      <td align="center"><code>High</code></td>
+      <td align="center"><code>Medium</code></td>
+    </tr>
+    <tr>
+      <td align="Left">Medium</td>
+      <td align="center"><code>High</code></td>
+      <td align="center"><code>Medium</code></td>
+      <td align="center"><code>Low</code></td>
+    </tr>
+    <tr>
+      <td align="Left">Low</td>
+      <td align="center"><code>Medium</code></td>
+      <td align="center"><code>Low</code></td>
+      <td align="center"><code>Info</code></td>
+    </tr>
+  </tbody>
+</table>
 
 #### Steps to Reproduce
 
@@ -279,9 +313,9 @@ The CTI Disclosure process can be outlined in the following steps:
 
 **Validation and Verification**: The CTI Watchdogs work closely with relevant technical experts to validate and verify the reported vulnerability or weakness. This involves replicating the issue, conducting tests, and analyzing the potential impact to ensure its authenticity.
 
-**Risk Mitigation**: Once a vulnerability or weakness is validated, the CTI Watchdogs collaborate with the appropriate stakeholders, such as developers, system administrators, or relevant project teams, to develop and implement mitigation measures. These measures aim to address the issue and minimize the associated risks effectively.
+**Risk Mitigation and Disclosure to Relevant dApps:**: Once a vulnerability or weakness is validated, the CTI Watchdogs collaborate with stakeholders, such as developers, system administrators, or project teams, to develop and implement effective mitigation measures. Simultaneously, as part of the CTI disclosure process, dApps in contact with the CTI watchdogs receive, in a confidential manner, information about the discovered vulnerabilities or weaknesses. This allows them to swiftly address the issues. Throughout the process, the CTI Watchdogs provide guidance and support, fostering a collaborative environment between dApps and security experts.
 
-**Disclosure Planning**: The CTI Watchdogs carefully plan the disclosure process to ensure compliance with cybersecurity disclosure laws and minimize any potential risks. They consider factors such as the severity of the vulnerability, the time required for mitigation, and the potential impact on users and stakeholders.
+**Public Disclosure Planning**: The CTI Watchdogs carefully plan the public disclosure process to ensure compliance with cybersecurity disclosure laws and minimize any potential risks. They consider factors such as the severity of the vulnerability, the time required for mitigation, and the potential impact on users and stakeholders.
 
 **CTI Identifier Assignment**: During the disclosure process, the CTI Watchdogs assign a unique CTI identifier to the vulnerability or weakness. This identifier follows the CTI Identifier format (CTI-YYYY-AAA-TT-N) and serves as a standardized reference for the disclosed issue within the Cardano Threat Intelligence repository.
 
