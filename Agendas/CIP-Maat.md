@@ -1,6 +1,7 @@
 Author: Alex
 
 Agenda: discuss my CIP proposal.
+TLDR: I propose to untroduce controlled randomness as a parameter and a regulable process for balancing the power of Cardano Stakeholders.
 
 The problem I would like to put forth is best described by the Cardano Summit Hackathon's theme: transparency for governance.
 So far as I understand when we talk about governance we talk about dReps most of the time. dReps are delegates, users who are able to vote on behalf of other users.
@@ -24,7 +25,7 @@ To restore the voting power, the user must burn it through a smart contract whic
 Preliminary, the Hype is recieved by the user if there are complaints on their behavior. The Hype score is stored on a private blockchain only accessible via zkp. 
 Remark: Self-balancing and credible reputation metrics based on well-defined inputs other than subjective ratings are needed (Gruhler et al., 2019)
 
-To reduce the Hype score, the user must host a meeting where they will publicly reflect on their Personal Statement and on why they think their reputation has suffered. Upon consensus with other dReps their Hype is reduced and they may burn their Cooldown token. 
+Preliminary, to reduce the Hype score, the user must host a meeting where they will publicly reflect on their Personal Statement and on why they think their reputation has suffered. Upon consensus with other dReps their Hype is reduced and they may be able to burn their Cooldown token. 
 I suppose this will be a driver of Transparency: if a rep has recieved a Cooldown warning they must host essentially an open trial of themselves, inviting other officials to reflect with them on the happenings since their last trial.
 
 As stated above, the incentive is progressive. Maybe it is wise to blacklist the key of a dRep who is the owner of 3 Hype tokens for 3 cycles and auction their position in the community.
