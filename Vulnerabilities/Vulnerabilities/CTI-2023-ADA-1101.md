@@ -1,0 +1,36 @@
+# CTI-2023-ADA-1101: Datum hijacking
+
+## Author
+
+Tweag -- High Assurance Software Group.
+
+### Summary
+
+Whenever an output is created with a suitable datum, it might happen that the validator forgets to verify its associated address. In that case, any script with the same kind of datum could benefit from redirecting that output.
+
+### Description
+
+This vulnerability occurs when a user assumes that the type of a datum is enough to ensure the correctness of the address of the associated output. However, in Cardano, multiple scripts might have the same type of datum, which makes it insufficient, as any user could possibly redirect such an output to their own script, thus rendering available the assets it contains. 
+
+### Risk Assessment
+
+- **Likelihood:** **Low** 
+- **Difficulty:** **Low**
+- **Impact:** **High**
+- **Severity:** **High**
+
+### Steps to Reproduce
+
+Assuming a validator fails to check for the right address of an output with a datum type **T**, anyone can publish their own validator with the same datum type **T** and redirect outputs towards it, which will be unchecked. Then based on the implementation of this new validator, the attacker can use the funds contained in these utxos to their liking. A trivial example is a validator that always returns yes, or a validator that only requires transactions to be signed by the attacker in question. 
+
+### Technical Details
+
+TODO: example of code vulnerable to datum hijacking.
+
+### Mitigation & Remediation Steps
+
+One needs to ensure, though the validation process, that any utxo paid to a script with a specific datum is paid at the right address as well. This means that this address needs to be known by the validator in some way.
+
+### References
+
+TODO: example of code in cooked, or resources elsewhere
