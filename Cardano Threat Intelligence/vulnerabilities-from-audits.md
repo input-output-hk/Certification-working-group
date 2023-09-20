@@ -44,7 +44,7 @@
 
 ### Possible missing assets when purchasing
 
-**WG** Is it a case of [Datum hijacking](./Vulnerabilities/CTI-2023-ADA-1101.md)
+**WG** Is it a case of [Datum hijacking](./Vulnerabilities/CTI-2023-ADA-11-01.md)
 
 ### Seller price 1 Ada too low with zero percent royalties
 
@@ -70,7 +70,7 @@ Context, which will help us simplify our Validator Scripts(3) and Minting Polici
 while avoiding more security problems. The better design will be implemented
 immediately after that.
 
-**WG** Issue 4 (below) is about the StakingToken being duplicated so is this related to [CTI-2023-ADA-1103: Stealing validity tokens](./Vulnerabilities/CTI-2023-ADA-1103.md) or [Infinite Mint](./full-list-to-be-triaged.md)?
+**WG** Issue 4 (below) is about the StakingToken being duplicated so is this related to [CTI-2023-ADA-1103: Stealing validity tokens](./Vulnerabilities/CTI-2023-ADA-11-03.md) or [Infinite Mint](./full-list-to-be-triaged.md)?
 
 ### Stability Pool reward cannot be withdrawn
 
@@ -90,7 +90,7 @@ modify protocol parameters.
 
 ### StakingToken can be duplicated
 
-**WG** [CTI-2023-ADA-1103: Stealing validity tokens](./Vulnerabilities/CTI-2023-ADA-1103.md) or [Infinite Mint](./full-list-to-be-triaged.md)?
+**WG** [CTI-2023-ADA-1103: Stealing validity tokens](./Vulnerabilities/CTI-2023-ADA-11-03.md) or [Infinite Mint](./full-list-to-be-triaged.md)?
 
 ### Modifying proposalDeposit interacts with exising proposals
 
@@ -104,11 +104,11 @@ modify protocol parameters.
 
 ### The buyer of a listed token may not receive the token
 
-**WG** From the text, maybe [Datum hijacking](./Vulnerabilities/CTI-2023-ADA-1101.md)?
+**WG** From the text, maybe [Datum hijacking](./Vulnerabilities/CTI-2023-ADA-11-01.md)?
 
 ### The seller may not get the fair amount of Ada for the sell
 
-**WG** From the text, maybe [Datum hijacking](./Vulnerabilities/CTI-2023-ADA-1101.md)?
+**WG** From the text, maybe [Datum hijacking](./Vulnerabilities/CTI-2023-ADA-11-01.md)?
 
 ## MinSwap (Only critical severity)
 
@@ -123,7 +123,7 @@ redeems one output belonging to the address of the poolCode validator. This can 
 
 ### Unauthorized Hijacking of Pools Funds
 
-**WG** [Datum hijacking](./Vulnerabilities/CTI-2023-ADA-1101.md)?
+**WG** [Datum hijacking](./Vulnerabilities/CTI-2023-ADA-11-01.md)?
 
 ## Muesli Swap (Only P1 severity)
 
@@ -145,17 +145,17 @@ This is quite a fatal attack. Consider an r that is as small as possible, i.e. m
 
 ### Funds can be locked after datum tampering
 
-**WG** [Datum hijacking](./Vulnerabilities/CTI-2023-ADA-1101.md)?
+**WG** [Datum hijacking](./Vulnerabilities/CTI-2023-ADA-11-01.md)?
 
 ### Bond tokens can be stolen after datum tampering
 
-**WG** [Datum hijacking](./Vulnerabilities/CTI-2023-ADA-1101.md)?
+**WG** [Datum hijacking](./Vulnerabilities/CTI-2023-ADA-11-01.md)?
 
 ### Bond tokens can be redeemed with different pool tokens
 
 From the text: As mentioned in issue 2.3.1.6, an attacker can create a pool, and redirect the pool tokens to their public key address instead of paying them to a script. After doing this, an attacker can buy exactly one pool token from a different pool. Then, the attacker can redeem that pool token while tampering with the ClosedPool datum, changing the pool token in the datum to the pool token of the pool the user originally created.
 
-**WG** [Datum hijacking](./Vulnerabilities/CTI-2023-ADA-1101.md)? But not alone, I think.
+**WG** [Datum hijacking](./Vulnerabilities/CTI-2023-ADA-11-01.md)? But not alone, I think.
 
 ## SundaeSwap
 
