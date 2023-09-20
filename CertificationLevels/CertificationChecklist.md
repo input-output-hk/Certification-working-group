@@ -100,3 +100,38 @@ Manual analysis: is complimentary to automated analysis using tools and serves a
 - About ***Symbolic checking*** to me personally it is not clear how can we do it inside cardano with UTxO model. Maybe `EmulatorTrace` is the tool?
 
 - This message will get updated when new items need to be added or removed.
+
+### Tokenomics Analysis (Manual)
+It is the study and analysis of the economics of a token, or "native asset," from its qualities to its distribution, from its production to its utilities, from its on-chain data and metadata specification to its off-chain representation, and much more. The audit process will vary based on the token being fungible or non-fungible. Also, it is necessary to mention that since the **Babel Fee** protocol and its implementation are coming to the Cardano blockchain, the analysis and audit of the tokenomics of a Dapp would have an impact on the network itself, so it should be considered whether a token is suitable to be used for the Babel Fee or not. 
+Factors affecting tokens:
+1. Nature of the token
+   1. Layer 1
+       - It is necessary to determine whether the token has standalone value on the settlement layer or if it is just a representation of another coin or token from another blockchain or sidechain of Cardano. In either case, they will settle every transaction on the network in the future using the Babel Fee protocol.
+   2. Layer 2
+      - Layer 2 tokens are mostly designed to help scale Dapps in a network, so how they are related to the Dapp layer 1 token must be specified.
+   3. Fungible tokens
+       - Fungibility is the main property of this kind of native asset, but it is important to know whether the policy ID of the token is locked or not, although this is important for non-fungible tokens as well.
+   4. Non-Fungible Tokens
+      - NFTs are supposedly unique, and each doesn’t have the same value, so it must be verified that those NFTs are indeed unique.
+      - With the tokenization of assets such as artwork, furniture, and real estate, NFTs are basically physical items held digitally, so it should be possible to verify that the asset and its corresponding item are 1 to 1.
+   5. Utility tokens
+      - With the rise of DAOs on Cardano, utility tokens of DAOs, such as governance tokens, reputation tokens, contribution tokens, etc., must be regulated in such a way that when a new community member wants to join the DAO, everything is transparent, clear, and easy to understand.
+2. Distribution and allocation of tokens:
+   1. By Mining
+   2. Pre-mined
+   3. Fair Lunch
+   4. IDO/ICO
+3. Supply of tokens and emission schedule
+   1. Circulating supply
+   2. Total supply
+   3. Max supply
+4. Market Capitalization of a Token
+5. Token model
+   1. Inflationary mechanism
+   2. Deflationary mechanism
+   3. Duel or more tokens (utility, security, etc.)
+6. Price Stability
+   1. Fiat-stablecoin
+   2. Crypto-stablecoin
+
+Sure, there is more information about analysing tokenomics that must be considered for certification, but if we decide to add it to the checklist, we can discuss it deeply and thoroughly.
