@@ -31,7 +31,7 @@ Among these exclusions are:
 
 In conclusion, the Cardano Certification Standard serves as a document promoting transparency, consistency, and confidence in the security of DApps.
 
-<u>RSoulat</u> This document draws heavily from the work of Common Criteria. I think we should take some inspiration from it for the security aspects, and, if we want to deal with purely functional aspects, add them where we see fit.
+*RSoulat* This document draws heavily from the work of Common Criteria. I think we should take some inspiration from it for the security aspects, and, if we want to deal with purely functional aspects, add them where we see fit.
 
 ## 2 General model
 
@@ -46,38 +46,38 @@ The CCS wishes to establish the general concepts and principles of DApp security
 
 ### 2.2 Terms and Definitions
 
-<u>RSoulat</u> Note: Taken from the CC definitions
-<u>RSoulat</u> Maybe we could drop the Protection Profiles from a first version and only deal with Security Target
+*RSoulat* Note: Taken from the CC definitions
+*RSoulat* Maybe we could drop the Protection Profiles from a first version and only deal with Security Target
 
 **Adverse action**: An action performed by a Theat agent on an Asset
 
 **Asset**: Entity that the owner of the Target of Evaluation places value on.
-<u>RSoulat</u> Example of assets we could consider: Ada, Tokens, NFTs, Wallet private keys
+*RSoulat* Example of assets we could consider: Ada, Tokens, NFTs, Wallet private keys
 
 **Attack potential**: Measure of the effort needed to exploit a vulnerability in a Targer of Evaluation (TOE)
 
 **Attack Surface**: Set of logical interfaces to a target, consisting of points through which access to the target's assets or control.
-<u>RSoulat</u> I removed "physical" and changed a bit the definition from the CC definition to better fit (I believe) what we're doing.
+*RSoulat* I removed "physical" and changed a bit the definition from the CC definition to better fit (I believe) what we're doing.
 
 **Decentralized Application**: Set of software running both on the blockchain, smart contracts, and on classical servers, off-chain code.
 
 **Developer**: Organization responsible for the development of the Target of Evaluation
 
 **Entity**: Identifiable item that is described by a set of properties. For example: subjects, users, objects, information sessions, resources
-<u>RSoulat</u> We could include Ada, Tokens, NFTs, Wallets, etc in the Entity definition?
+*RSoulat* We could include Ada, Tokens, NFTs, Wallets, etc in the Entity definition?
 
 **Evaluation Level**: Well formed package of security assurance requirements representing a point on the predefined assurance scale.
 
 **Evaluation authority**: Body operating an evaluation scheme
-<u>RSoulat</u> Could be Auditors, or any "certificate provider", the difference with the CC is that the evaluation authority is **not** the certificate issuer
+*RSoulat* Could be Auditors, or any "certificate provider", the difference with the CC is that the evaluation authority is **not** the certificate issuer
 
 **Exploitable vulnerability**: Weakness in the Target of Evaluation (TOE) that can be used to violate the Security Functional Requirement (SFRs) in the Operation Environment (OE) for the TOE
 
 **Object**: Entity in the Target of Evaluation that contains or receives information and upon which subjects perform operations.
-<u>RSoulat</u> Maybe we could also augment this definition to include UTxOs? 
+*RSoulat* Maybe we could also augment this definition to include UTxOs? 
 
 **Operation Environment**: Enfironment in which the Target of Evaluation (TOE) is operated, consisting of everything that is outside the TOE boundary
-<u>RSoulat</u> For example, the ledger, the other contracts, the off-chain code if the TOE is only the on-chain component
+*RSoulat* For example, the ledger, the other contracts, the off-chain code if the TOE is only the on-chain component
 
 **Potential vulnerability**: Suspected, but not confirmed, weakness
 
@@ -90,10 +90,10 @@ The CCS wishes to establish the general concepts and principles of DApp security
 **Security Functional Requirements**: Security requirements, which contributes to fulfil the Target of Evaluation (TOE) Security Problem Definition (SPD) as defined in a specific Security Target (ST) or in a Protection Profile (PP).
 
 **Security Objective**: Statement of an intent to counter identified threats and/or identified organization security policies and/or assumptions.
-<u>RSoulat</u> Maybe overkill, maybe we could just have "counter identified threats" and not the rest. Even though I think organization security policies are a big component of security even for a DApp.
+*RSoulat* Maybe overkill, maybe we could just have "counter identified threats" and not the rest. Even though I think organization security policies are a big component of security even for a DApp.
 
 **Security Problem Definition**: Statement, which in a formal manner defines the nature and scope of the security that the Target of Evaluation (TOE) is intended to address
-<u>RSoulat</u> I think this is one of the main thing we need to address
+*RSoulat* I think this is one of the main thing we need to address
 
 **Security Requirement**: Requirement, which is part of a Target of Evaluation (TOE) security specification as defined in a specific Security Target (ST) or in a Protection Profile (PP)
 
@@ -102,7 +102,7 @@ The CCS wishes to establish the general concepts and principles of DApp security
 **Subject**: Entity in the Target of Evaluation (TOE) that performs operations on objects
 
 **Target of Evaluation**: Set of software which is the subject of an evaluation
-<u>RSoulat</u> I dropped the "hardware" and "firmware" part of the CC definition
+*RSoulat* I dropped the "hardware" and "firmware" part of the CC definition
 
 **Vulnerability**: Weakness in the Target of Evaluation (TOE) that can be used to violate the Security Functional Requirement (SFRs) in the Operation Environment (OE) for the TOE
 
@@ -201,7 +201,7 @@ A threat is an adverse action that can be performed by a threat agent on an asse
 
 ## 3.5 Protection Profile
 
-<u>RSoulat</u> I think we can drop the PP for a first version. It might become clearer when we have first drafts for example STs to ground the discussion and see which PP we can establish.
+*RSoulat* I think we can drop the PP for a first version. It might become clearer when we have first drafts for example STs to ground the discussion and see which PP we can establish.
 
 ## 3.5 Evaluation Levels
 
