@@ -199,14 +199,41 @@ A threat is an adverse action that can be performed by a threat agent on an asse
 
 ## 3.4 Security Target
 
+A ST is a document that describes:
+- a specific TOE (features, life cycle, interfaces, the intended usage, ...)
+- Conformance Claims (Which version of the standard, which PP, which EAL, ...)
+- Security problem definition (assets, threats, organizational security policies, assumptions, ...)
+- Security objectives (functional and assurance)
+- Security requirements (functional and assurance)
+
+
 ## 3.5 Protection Profile
 
 *RSoulat* I think we can drop the PP for a first version. It might become clearer when we have first drafts for example STs to ground the discussion and see which PP we can establish.
 
 ## 3.5 Evaluation Levels
 
-### 3.5.1 Automated Evaluation [1]
+The CCS should define a set of evaluation levels that can be used to evaluate the security features of a DApp. The evaluation levels should be defined in a way that they can be used to compare the security features of different DApps.
 
-This level of evaluation is based on the automated analysis of the source code or compiled version of the TOE to determine whether the TOE meets the security requirements.
+### 3.5.1 EAL1 - Automated testing
+
+This level of evaluation is based on the functional testing of the TOE to determine whether the TOE meets the security requirements. The testing is performed by the developer of the TOE and the use of automated tools.
+
+At this level, the TOE is not expected to be resistant to attack. The TOE is expected to be functionally correct and to be free of vulnerabilities that are checkable automatically.
+
+At this level of evaluation, the analysis of the Security Target has to be left to the end-user. The quality of the Security Target cannot be addressed automatically.
+
+### 3.5.1 EAL2 - Manual testing
+
+This level of evaluation is based on the testing of the TOE to determine whether the TOE meets the security requirements. The testing is performed by the developer of the TOE.
+
+A manual audit of the Security Target is performed to ensure that the Security Target is of sufficient quality. The audit should also review the quality of the verification activities performed by the developer and could also complement it to ensure that the TOE is functionally correct and to be free of vulnerabilities.
+
+### 3.5.3 EAL3 - Formally Verified
+
+This level of evaluation is based on the full functional verification of the TOE to determine whether it meets the security requirements.
+
+
 
 ## Example of a Security Target
+
