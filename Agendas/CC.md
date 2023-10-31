@@ -1,5 +1,5 @@
-TABLE OF CONTENTS
-1 Security Target Introduction 
+# TABLE OF CONTENTS
+1 [Security Target Introduction]()
 1.1 Security Target Reference 
 1.2 TOE Reference 
 1.3 Terminology and Acronyms
@@ -32,3 +32,5 @@ TABLE OF CONTENTS
 8.3 Extended Security Functional Requirement Rationale
 8.4 Extended Security Assurance Requirement Rationale
 8.5 Security Functional Requirements Rationale
+
+# 1. Security Targets Introduction
