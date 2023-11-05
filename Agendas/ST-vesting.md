@@ -37,22 +37,24 @@
 
 1.1 Security Target Reference <br>
 
-is a table
+TODO
 
 1.2 TOE Reference <br>
 
-is a table
+TODO
 
 1.3 Terminology and Acronyms<br>
 
-is a table
+TODO
 
 1.4 Product Overview<br>
 
-product is ... ; users is allowed ... <br>
-TOE for this evaluation will only focus on the API engine that used by <br>
+product is a vesting service <br>
+users is allowed to test the smart contract by submitting transactions to the blockchain emulator.<br>
+TOE for this evaluation will only focus on the API engine that used by ?? <br>
 The product consists of the following components: <br>
-The component that is the part of the scope of TOE is X. X is utilized to Y <br> 
+vitest is a testing framework, Helios is a TypeScript DSL for writing dApps in eUTXO model. eUTXO is a model of the Cardano blockchain.
+The component that is the part of the scope of TOE is the potential-robot repository. potential-robot is utilized to experiment with validators and transactions<br> 
 
 1.5 TOE Overview <br>
 
