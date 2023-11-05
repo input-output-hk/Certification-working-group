@@ -53,8 +53,7 @@ product is a vesting service <br>
 users is allowed to test the smart contract by submitting transactions to the blockchain emulator.<br>
 TOE for this evaluation will only focus on the API engine that used by ?? <br>
 The product consists of the following components: <br>
-vitest is a testing framework, Helios is a TypeScript DSL for writing dApps in eUTXO model. eUTXO is a model of the Cardano blockchain.
-The component that is the part of the scope of TOE is the potential-robot repository. potential-robot is utilized to experiment with validators and transactions<br> 
+the validator script, the transaction builder, testing harness.
 
 1.5 TOE Overview <br>
 
@@ -63,6 +62,8 @@ context for the evaluated TOE by identifying the TOE type, describing the produc
 specific evaluated configuration. <br>
 
 1.5.X TODO: Usage and features, Type, Non-TOE hardware/firmware/software required by the TOE
+
+npm is the TypeScript package manager. vitest is a testing framework, Helios is a TypeScript DSL for writing dApps in eUTXO model. eUTXO is a model of the Cardano blockchain.
 
 1.6 TOE Description<br>
 
