@@ -51,9 +51,9 @@ TODO
 
 product is a vesting service <br>
 users is allowed to test the smart contract by submitting transactions to the blockchain emulator.<br>
-TOE for this evaluation will only focus on the API engine that used by ?? <br>
 The product consists of the following components: <br>
-the validator script, the transaction builder, testing harness.
+the validator script, the transaction catalog, testing harness, test runner, build system, CI runner<br>
+TOE for evaluation consists of the validator script, the transaction catalog and the test harness.
 
 1.5 TOE Overview <br>
 
@@ -61,7 +61,13 @@ TOE Overview summarizes the usage and major security features of the TOE. TOE Ov
 context for the evaluated TOE by identifying the TOE type, describing the product, and defining the
 specific evaluated configuration. <br>
 
-1.5.X TODO: Usage and features, Type, Non-TOE hardware/firmware/software required by the TOE
+1.5.1 Usage and features
+
+build transactions using tests, abstract transactions into functions, modify the validator script and the transactions to create new dApp architectures.
+
+1.5.2 Type 
+
+1.5.3 Non-TOE hardware/firmware/software required by the TOE
 
 npm is the TypeScript package manager. vitest is a testing framework, Helios is a TypeScript DSL for writing dApps in eUTXO model. eUTXO is a model of the Cardano blockchain.
 
