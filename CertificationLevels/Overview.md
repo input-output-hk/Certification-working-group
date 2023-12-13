@@ -38,7 +38,7 @@ The certification program for DApps on Cardano consists of three levels, each of
 Certification brings several benefits to both smart contract developers and end-users:
 
 - **Correctness, Compliance, and Consistency:** Certification ensures that DApps meet the specified requirements and follow best practices, enhancing their overall quality.
-- **Absence of Security Vulnerabilities:** Certified DApps are guaranteed to be free from common security vulnerabilities, making them more robust and reliable.
+- **Absence of Security Vulnerabilities:** Certified DApps have lower chance to present common security vulnerabilities, making them more robust and reliable.
 - **User Assurance:** By auditing the specifications, design, and ideation phases, evidence is presented to the community that the DApp will work as expected, increasing user confidence.
 - **Reassurance for Users:** The certification status will be integrated into the dAppStore, allowing users to view the certification level of each DApp, enabling them to make informed decisions based on quality and safety.
 
